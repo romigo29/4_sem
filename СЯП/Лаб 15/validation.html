@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body,
+        .radio-group {
+            font-size: 20px;
+        }
+
+        .form-container {
+            width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            width: 300px;
+            text-align: left;
+            margin-right: 10px;
+        }
+
+        .form-group input {
+
+            border-radius: 3px;
+        }
+
+        #about {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+
+        <form id="form">
+            <h3>Заполните форму:</h3>
+            <div class="form-group">
+                <label for="last_name">Фамилия</label>
+                <input id="last_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Имя</label>
+                <input id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Телефон (0xx)xxx-xx-xx</label>
+                <input id="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="city">Город</label>
+                <select id="city">
+                    <option value="Брест">Брест</option>
+                    <option value="Минск">Минск</option>
+                    <option value="Гродно">Гродно</option>
+                    <option value="Гомель">Гомель</option>
+                    <option value="Витебск">Витебск</option>
+                    <option value="Могилев">Могилев</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="isbstu">Я учусь в БГТУ</label>
+                <input type="checkbox" id="isbstu">
+            </div>
+
+            <div class="form-group">
+                <label for="course">На каком курсе вы учитесь?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="course">1</label>
+                    <label><input type="radio" name="course">2</label>
+                    <label><input type="radio" name="course">3</label>
+                    <label><input type="radio" name="course">4</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="about">Расскажите о себе:</label>
+                <textarea id="about" rows="4"></textarea>
+            </div>
+
+            <input type="submit" value="Проверить" onclick="validateForm()">
+        </form>
+    </div>
+    <script src="./validation.js"></script>
+</body>
+
+</html>

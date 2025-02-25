@@ -56,23 +56,26 @@
 			// 
 			// ValuePerWeight
 			// 
+			this.ValuePerWeight.BackColor = System.Drawing.SystemColors.ControlLight;
 			resources.ApplyResources(this.ValuePerWeight, "ValuePerWeight");
 			this.ValuePerWeight.Name = "ValuePerWeight";
-			this.ValuePerWeight.UseVisualStyleBackColor = true;
+			this.ValuePerWeight.UseVisualStyleBackColor = false;
 			this.ValuePerWeight.Click += new System.EventHandler(this.buttonValuePerWeight_Click);
 			// 
 			// CostPrice
 			// 
+			this.CostPrice.BackColor = System.Drawing.SystemColors.ControlLight;
 			resources.ApplyResources(this.CostPrice, "CostPrice");
 			this.CostPrice.Name = "CostPrice";
-			this.CostPrice.UseVisualStyleBackColor = true;
+			this.CostPrice.UseVisualStyleBackColor = false;
 			this.CostPrice.Click += new System.EventHandler(this.buttonCostPrice_Click);
 			// 
 			// MonthUsages
 			// 
+			this.MonthUsages.BackColor = System.Drawing.SystemColors.ControlLight;
 			resources.ApplyResources(this.MonthUsages, "MonthUsages");
 			this.MonthUsages.Name = "MonthUsages";
-			this.MonthUsages.UseVisualStyleBackColor = true;
+			this.MonthUsages.UseVisualStyleBackColor = false;
 			this.MonthUsages.Click += new System.EventHandler(this.ButtonMonthUsages_Click);
 			// 
 			// dataGridView1
@@ -112,22 +115,25 @@
 			// 
 			// Add
 			// 
+			this.Add.BackColor = System.Drawing.SystemColors.ControlLight;
 			resources.ApplyResources(this.Add, "Add");
 			this.Add.Name = "Add";
-			this.Add.UseVisualStyleBackColor = true;
+			this.Add.UseVisualStyleBackColor = false;
 			this.Add.Click += new System.EventHandler(this.buttonAdd_Click);
 			// 
 			// Clear
 			// 
+			this.Clear.BackColor = System.Drawing.SystemColors.ControlLight;
 			resources.ApplyResources(this.Clear, "Clear");
 			this.Clear.Name = "Clear";
-			this.Clear.UseVisualStyleBackColor = true;
+			this.Clear.UseVisualStyleBackColor = false;
 			this.Clear.Click += new System.EventHandler(this.buttonClear_Click);
 			// 
 			// ProductCalculator
 			// 
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.SystemColors.Info;
 			this.Controls.Add(this.Clear);
 			this.Controls.Add(this.Add);
 			this.Controls.Add(this.dataGridView1);
