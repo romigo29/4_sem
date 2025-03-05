@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			this.label1 = new System.Windows.Forms.Label();
 			this.FullName = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
@@ -63,6 +64,7 @@
 			this.SMSON = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Banking = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.OutputBudget = new System.Windows.Forms.RichTextBox();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.Balance)).BeginInit();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -72,7 +74,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label1.Location = new System.Drawing.Point(256, 9);
+			this.label1.Location = new System.Drawing.Point(333, 9);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(327, 29);
 			this.label1.TabIndex = 0;
@@ -98,12 +100,12 @@
 			// 
 			// PassportData
 			// 
+			this.PassportData.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
 			this.PassportData.Location = new System.Drawing.Point(456, 87);
-			this.PassportData.Mask = "000-00-0000";
+			this.PassportData.Mask = "LL0000000";
 			this.PassportData.Name = "PassportData";
 			this.PassportData.Size = new System.Drawing.Size(242, 22);
 			this.PassportData.TabIndex = 3;
-			this.PassportData.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PassportData_KeyPress);
 			// 
 			// Passport
 			// 
@@ -139,6 +141,7 @@
 			this.BirthDate.Size = new System.Drawing.Size(242, 22);
 			this.BirthDate.TabIndex = 7;
 			this.BirthDate.Value = new System.DateTime(2025, 2, 21, 17, 43, 38, 0);
+			this.BirthDate.Validating += new System.ComponentModel.CancelEventHandler(this.BirthDate_Validating);
 			// 
 			// label3
 			// 
@@ -245,7 +248,7 @@
 			// Confirm
 			// 
 			this.Confirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.Confirm.Location = new System.Drawing.Point(349, 449);
+			this.Confirm.Location = new System.Drawing.Point(306, 458);
 			this.Confirm.Name = "Confirm";
 			this.Confirm.Size = new System.Drawing.Size(330, 38);
 			this.Confirm.TabIndex = 18;
@@ -256,29 +259,29 @@
 			// ReadFile
 			// 
 			this.ReadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.ReadFile.Location = new System.Drawing.Point(472, 693);
+			this.ReadFile.Location = new System.Drawing.Point(456, 717);
 			this.ReadFile.Name = "ReadFile";
 			this.ReadFile.Size = new System.Drawing.Size(398, 38);
 			this.ReadFile.TabIndex = 19;
-			this.ReadFile.Text = "Получить данные из файла";
+			this.ReadFile.Text = "Прочитать из JSON-файла";
 			this.ReadFile.UseVisualStyleBackColor = true;
 			this.ReadFile.Click += new System.EventHandler(this.FileRead_Click);
 			// 
 			// WriteFile
 			// 
 			this.WriteFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.WriteFile.Location = new System.Drawing.Point(119, 693);
+			this.WriteFile.Location = new System.Drawing.Point(103, 717);
 			this.WriteFile.Name = "WriteFile";
 			this.WriteFile.Size = new System.Drawing.Size(331, 38);
 			this.WriteFile.TabIndex = 20;
-			this.WriteFile.Text = "Записать данные в файл";
+			this.WriteFile.Text = "Записать в JSON-файл";
 			this.WriteFile.UseVisualStyleBackColor = true;
 			this.WriteFile.Click += new System.EventHandler(this.WriteFile_Click);
 			// 
 			// Budget
 			// 
 			this.Budget.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-			this.Budget.Location = new System.Drawing.Point(393, 781);
+			this.Budget.Location = new System.Drawing.Point(412, 815);
 			this.Budget.Name = "Budget";
 			this.Budget.Size = new System.Drawing.Size(286, 38);
 			this.Budget.TabIndex = 21;
@@ -290,12 +293,11 @@
 			// 
 			this.label8.AutoSize = true;
 			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label8.Location = new System.Drawing.Point(38, 489);
+			this.label8.Location = new System.Drawing.Point(38, 515);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(179, 25);
 			this.label8.TabIndex = 22;
 			this.label8.Text = "Исходные данные";
-			this.label8.Click += new System.EventHandler(this.label8_Click);
 			// 
 			// Account
 			// 
@@ -320,7 +322,7 @@
             this.Дата_открытия,
             this.SMSON,
             this.Banking});
-			this.dataGridView1.Location = new System.Drawing.Point(14, 528);
+			this.dataGridView1.Location = new System.Drawing.Point(40, 552);
 			this.dataGridView1.Name = "dataGridView1";
 			this.dataGridView1.RowHeadersWidth = 51;
 			this.dataGridView1.RowTemplate.Height = 24;
@@ -392,17 +394,23 @@
 			// 
 			// OutputBudget
 			// 
-			this.OutputBudget.Location = new System.Drawing.Point(14, 749);
+			this.OutputBudget.Location = new System.Drawing.Point(14, 780);
 			this.OutputBudget.Name = "OutputBudget";
 			this.OutputBudget.Size = new System.Drawing.Size(358, 106);
 			this.OutputBudget.TabIndex = 25;
 			this.OutputBudget.Text = "";
 			// 
+			// toolTip1
+			// 
+			this.toolTip1.ShowAlways = true;
+			this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+			// 
 			// Bank
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(908, 880);
+			this.BackColor = System.Drawing.SystemColors.Info;
+			this.ClientSize = new System.Drawing.Size(908, 958);
 			this.Controls.Add(this.OutputBudget);
 			this.Controls.Add(this.dataGridView1);
 			this.Controls.Add(this.label8);
@@ -476,5 +484,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn SMSON;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Banking;
 		private System.Windows.Forms.RichTextBox OutputBudget;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }

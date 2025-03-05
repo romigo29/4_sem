@@ -4,14 +4,14 @@ type GroupFilterType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 type MarkType = {
     subject: string,
-    mark: MarkFilterType, // может принимать значения от 1 до 10
+    mark: MarkFilterType, 
     done: DoneType,
 }
 
 type StudentType = {
     id: number,
     name: string,
-    group: GroupFilterType, // может принимать значения от до 12
+    group: GroupFilterType, 
     marks: Array<MarkType>,
 }
 

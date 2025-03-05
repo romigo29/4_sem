@@ -11,3 +11,5 @@ const array: Student[] = [
     { id: 4, name: 'Petya', group: 10 },
     { id: 5, name: 'Kira', group: 11 }
 ]
+
+console.log(array);

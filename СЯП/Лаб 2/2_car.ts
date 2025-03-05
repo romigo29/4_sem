@@ -6,3 +6,5 @@ interface CarsType {
 let car: CarsType = {};
 car.manufacturer = "manufacturer";
 car.model = 'model';
+
+console.log(car);

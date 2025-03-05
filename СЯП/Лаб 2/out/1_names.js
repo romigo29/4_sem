@@ -5,4 +5,5 @@ const array = [
     { id: 4, name: 'Petya', group: 10 },
     { id: 5, name: 'Kira', group: 11 }
 ];
+console.log(array);
 //# sourceMappingURL=1_names.js.map
