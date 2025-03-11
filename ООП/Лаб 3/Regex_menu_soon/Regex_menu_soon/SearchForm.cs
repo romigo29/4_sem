@@ -36,12 +36,6 @@ namespace Bank
 				return;
 			}
 
-			if (string.IsNullOrEmpty(Criteria))
-			{
-				MessageBox.Show("Выберите критерий для поиска");
-				return;
-			}
-
 			try
 			{
 				Regex regex = new Regex(Query, RegexOptions.IgnoreCase);

@@ -46,7 +46,7 @@
 			// 
 			// CriteriaBox
 			// 
-			this.CriteriaBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.CriteriaBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.CriteriaBox.FormattingEnabled = true;
 			this.CriteriaBox.Items.AddRange(new object[] {
             "Номер счета",
@@ -54,7 +54,7 @@
             "Паспортные данные"});
 			this.CriteriaBox.Location = new System.Drawing.Point(256, 58);
 			this.CriteriaBox.Name = "CriteriaBox";
-			this.CriteriaBox.Size = new System.Drawing.Size(121, 33);
+			this.CriteriaBox.Size = new System.Drawing.Size(121, 28);
 			this.CriteriaBox.TabIndex = 2;
 			// 
 			// QueryInput

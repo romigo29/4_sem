@@ -1,0 +1,8 @@
+ use Univer
+
+select distinct PULPIT.PULPIT_NAME	
+from PULPIT
+join FACULTY on PULPIT.FACULTY = FACULTY.FACULTY
+Join PROFESSION on PULPIT.FACULTY = PROFESSION.FACULTY
+WHERE PROFESSION_NAME like '%технология%' or
+	PROFESSION_NAME like '%технологии%'
