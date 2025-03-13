@@ -2,8 +2,6 @@ class HTMLReport {
     constructor(title, content) {
         this.title = title;
         this.content = content;
-        this.title = title;
-        this.content = content;
     }
     generate() {
         return `<h1>${this.title}</h1><p>${this.content}</p>`;
@@ -11,8 +9,6 @@ class HTMLReport {
 }
 class JSONReport {
     constructor(title, content) {
-        this.title = title;
-        this.content = content;
         this.title = title;
         this.content = content;
     }

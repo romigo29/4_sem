@@ -7,10 +7,7 @@ interface IReport {
 
 class HTMLReport implements IReport {
 
-    constructor(public title: string, public content: string) {
-        this.title = title;
-        this.content = content;
-    }
+    constructor(public title: string, public content: string) { }
 
     generate() {
         return `<h1>${this.title}</h1><p>${this.content}</p>`;
@@ -19,10 +16,7 @@ class HTMLReport implements IReport {
 
 class JSONReport implements IReport {
 
-    constructor(public title: string, public content: string) {
-        this.title = title;
-        this.content = content;
-    }
+    constructor(public title: string, public content: string) { }
 
     generate() {
         return `{ title: "${this.title}", content: "${this.content}" }`;

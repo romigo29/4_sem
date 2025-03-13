@@ -4,10 +4,7 @@ abstract class BaseUser {
     abstract GetRole(): string;
     abstract GetPermissions(): string[];
 
-    constructor(id: number, name: string) {
-        this.id = id;
-        this.name = name;
-    }
+    constructor(id: number, name: string) { }
 }
 
 class Guest extends BaseUser {

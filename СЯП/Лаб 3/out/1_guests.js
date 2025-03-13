@@ -1,8 +1,5 @@
 class BaseUser {
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
-    }
+    constructor(id, name) { }
 }
 class Guest extends BaseUser {
     GetRole() {

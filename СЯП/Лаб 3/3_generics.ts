@@ -21,7 +21,7 @@ class TCache<T> {
     }
     clearExpired() {
         const currentTime = Date.now();
-        for (const [key, { expireTime }] of this.data.entries()) {
+        for (const [key, { expireTime}] of this.data.entries()) {
             if (currentTime > expireTime) {
                 this.data.delete(key);
             }
