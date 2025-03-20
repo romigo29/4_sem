@@ -1,0 +1,84 @@
+﻿<Window x:Class="WPF_FitnessClub.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_FitnessClub"
+        mc:Ignorable="d"
+        MinWidth="600px"
+        Title="FitnessClubApp" Height="450" Width="800" WindowStyle="ThreeDBorderWindow">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="30px"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel>
+
+        <Menu DockPanel.Dock="Top" Grid.Row="0" MinHeight ="30px" MinWidth="30px" Background="#FF3A3434">
+            <Menu.Resources>
+                <Style TargetType="MenuItem">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </Menu.Resources>
+            <MenuItem Header="Главная" HorizontalAlignment="Center"/>
+            <MenuItem x:Name="Subscriptions" Header="Абонементы" Click="Subscriptions_Click"/>
+            <MenuItem Header="Тренировки">
+                <MenuItem Header="Расписание занятий" Foreground="White" Background="#FFC01313"/>
+                <MenuItem Header="Персональные тренировки" Background="#FFC01313" Foreground="White"/>
+                <MenuItem Header="Групповые занятия" Background="#FFC01313"/>
+            </MenuItem>
+            <MenuItem Header="Тренеры"/>
+            <MenuItem Header="Контакты" HorizontalAlignment="Center"/>
+        </Menu>
+
+        <ScrollViewer Grid.RowSpan = "1">
+
+            <StackPanel x:Name="SubscriptionsControl" Grid.Row="1" Margin="50" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="59*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Source="/iron1.jpg" HorizontalAlignment="Center" Grid.Row="0" Stretch="Fill"/>
+                    <TextBox Text="Тренажерный зал" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged"/>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="59*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Source="/iron1.jpg" HorizontalAlignment="Center" Grid.Row="0" Stretch="Fill"/>
+                    <TextBox Text="Тренажерный зал" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged"/>
+
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        </DockPanel>
+
+    </Grid>
+
+</Window>

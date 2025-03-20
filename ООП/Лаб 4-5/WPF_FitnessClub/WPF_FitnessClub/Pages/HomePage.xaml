@@ -1,0 +1,39 @@
+<Page x:Class="WPF_FitnessClub.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_FitnessClub.Pages"
+      xmlns:userControls="clr-namespace:WPF_FitnessClub.UserControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Главная">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                  HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="20">
+            <TextBlock Text="Наши услуги" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Margin="0,0,0,20"/>
+
+            <userControls:ServiceCard 
+                Title="Тренажерный зал"
+                Description="Современный тренажерный зал с профессиональным оборудованием. Доступны все виды тренажеров, зона для свободных весов и кардио-зона."
+                Price="Цена: 2000 ₽/месяц"
+                ImageSource="/iron1.jpg"/>
+
+            <userControls:ServiceCard 
+                Title="Групповые занятия"
+                Description="Разнообразные групповые занятия: йога, пилатес, аэробика, танцы. Занятия проводятся опытными инструкторами."
+                Price="Цена: 1500 ₽/месяц"
+                ImageSource="/iron1.jpg"/>
+
+            <userControls:ServiceCard 
+                Title="Персональные тренировки"
+                Description="Индивидуальные тренировки с персональным тренером. Программа тренировок составляется с учетом ваших целей и физической подготовки."
+                Price="Цена: 3000 ₽/месяц"
+                ImageSource="/iron1.jpg"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page> 
