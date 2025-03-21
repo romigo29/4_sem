@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPF_FitnessClub"
         mc:Ignorable="d"
         MinWidth="600px"
+        MinHeight="500px"
         Title="FitnessClubApp" Height="450" Width="800" WindowStyle="ThreeDBorderWindow">
     <Grid>
 
@@ -16,68 +17,93 @@
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="30px"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <DockPanel>
+        <DockPanel LastChildFill="True">
+            
+            
+        <!--#region Меню навигации-->
+            <Menu 
+            DockPanel.Dock="Top"
+            MinWidth="30px" 
+            Background="#FF3A3434"
+            Padding="10,10,20,10" 
+            Foreground="White" FontSize="14">
 
-        <Menu DockPanel.Dock="Top" Grid.Row="0" MinHeight ="30px" MinWidth="30px" Background="#FF3A3434">
-            <Menu.Resources>
-                <Style TargetType="MenuItem">
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="Padding" Value="10,5"/>
-                    <Setter Property="FontSize" Value="14"/>
-                </Style>
-            </Menu.Resources>
-            <MenuItem Header="Главная" HorizontalAlignment="Center"/>
-            <MenuItem x:Name="Subscriptions" Header="Абонементы" Click="Subscriptions_Click"/>
-            <MenuItem Header="Тренировки">
-                <MenuItem Header="Расписание занятий" Foreground="White" Background="#FFC01313"/>
-                <MenuItem Header="Персональные тренировки" Background="#FFC01313" Foreground="White"/>
-                <MenuItem Header="Групповые занятия" Background="#FFC01313"/>
-            </MenuItem>
-            <MenuItem Header="Тренеры"/>
-            <MenuItem Header="Контакты" HorizontalAlignment="Center"/>
-        </Menu>
-
-        <ScrollViewer Grid.RowSpan = "1">
-
-            <StackPanel x:Name="SubscriptionsControl" Grid.Row="1" Margin="50" >
-                <Grid>
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                    <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*"/>
-                        <ColumnDefinition Width="11*"/>
-                        <ColumnDefinition Width="59*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
+                    </Grid>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
+                <MenuItem Header="Главная" HorizontalAlignment="Center" Grid.Column="0"/>
+                    <MenuItem x:Name="Subscriptions" Header="Абонементы" Grid.Column="1" Click="Subscriptions_Click"/>
+                    <MenuItem Header="Тренировки" Grid.Column="2">
+                        <MenuItem Header="Расписание занятий" Foreground="White" Background="#FFC01313"/>
+                        <MenuItem Header="Персональные тренировки" Background="#FFC01313" Foreground="White"/>
+                        <MenuItem Header="Групповые занятия" Background="#FFC01313"/>
+                    </MenuItem>
+                    <MenuItem Header="Тренеры" Grid.Column="3"/>
+                    <MenuItem Header="Контакты" Grid.Column="4"/>
+            
+            </Menu>
+            <!--#endregion-->
 
-                    <Image Source="/iron1.jpg" HorizontalAlignment="Center" Grid.Row="0" Stretch="Fill"/>
-                    <TextBox Text="Тренажерный зал" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged"/>
+        <!--#region Прокрутка-->
 
-                </Grid>
+            <ScrollViewer >
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*"/>
-                        <ColumnDefinition Width="11*"/>
-                        <ColumnDefinition Width="59*"/>
-                    </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Margin="40" >
+                
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70*"/>
+                            <ColumnDefinition Width="11*"/>
+                            <ColumnDefinition Width="59*"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
 
-                    <Image Source="/iron1.jpg" HorizontalAlignment="Center" Grid.Row="0" Stretch="Fill"/>
-                    <TextBox Text="Тренажерный зал" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged"/>
+                        <Image Source="/iron1.jpg" HorizontalAlignment="Center" Grid.Row="0" Stretch="Fill"/>
+                        <TextBox Text="Тренажерный зал" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged"/>
 
-                </Grid>
+                    </Grid>
+                
             </StackPanel>
         </ScrollViewer>
+            
+        <!--#endregion-->
+
+            
+        <!--#region Нижняя панель кнопок-->
         </DockPanel>
+        
+            <StackPanel
+                Grid.Row="2" 
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                
+                Margin="0 20 0 20">
+                
+
+            <Button x:Name="AddButon" Content="Добавить" Click="AddButon_Click"/>
+            <Button Content="Редактировать"/>
+            <Button Content="Удалить"/>
+        </StackPanel>
+       <!--#endregion-->
+
 
     </Grid>
 

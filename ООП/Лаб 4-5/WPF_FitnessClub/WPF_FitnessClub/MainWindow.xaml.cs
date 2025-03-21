@@ -34,5 +34,11 @@ namespace WPF_FitnessClub
 		{
 
 		}
-	}
+
+		private void AddButon_Click(object sender, RoutedEventArgs e)
+		{
+			AddSubscription addSubscription = new AddSubscription();
+			addSubscription.Show();
+        }
+    }
 }
