@@ -1,0 +1,14 @@
+.history-container {
+    margin-bottom: 10px;
+  }
+  
+  .history {
+    background-color: #444;
+    font-size: 12px;
+    color: #bed1c3;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 60px;
+    overflow-y: auto;
+    text-align: left;
+  }

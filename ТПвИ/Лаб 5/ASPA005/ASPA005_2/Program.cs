@@ -15,11 +15,14 @@ internal class Program
 		Repository.JSONFileName = "Celebrities.json";
 		using (IRepository repository = Repository.Create("Celebrities"))
 		{
+
+			RouteGroupBuilder api = app.MapGroup("/Celebrities");
+
 			app.UseExceptionHandler("/Celebrities/Error");
 
-			app.MapGet("/Celebrities", () => repository.getAllCelebrities());  // ASPA03
+			api.MapGet("/", () => repository.getAllCelebrities());  // ASPA03
 
-			app.MapGet("/Celebrities/{id:int}", (int id) =>
+			api.MapGet("/{id:int}", (int id) =>
 			{
 				Celebrity? celebrity = repository.getCelebrityById(id);
 				if (celebrity == null) throw new FoundByIdException($"Celebrity Id = {id}");
@@ -27,31 +30,37 @@ internal class Program
 			});
 
 
-			SurnameFilter.repository = PhotoExistFilter.repository = repository;
+			SurnameFilter.repository = PhotoExistFilter.repository =
+				FirstnameFilter.repository = IdFilter.repository = repository;
 
-			app.MapPost("/Celebrities", (Celebrity celebrity) =>
+			api.MapPost("/", (Celebrity celebrity) =>
 			{
 				int? id = repository.addCelebrity(celebrity);
 				if (id == null) throw new AddCelebrityException("/Celebrities error, id == null");
 				if (repository.SaveChanges() <= 0) throw new SaveException("/Celebrities error, SaveChanges() <= 0");
 				return new Celebrity((int)id, celebrity.Firstname, celebrity.Surname, celebrity.PhotoPath);
 			})
-			.AddEndpointFilter<SurnameFilter>()  // Проверка фамилии
-			.AddEndpointFilter<PhotoExistFilter>(); // Проверка фото
+			.AddEndpointFilter<SurnameFilter>()  // РџСЂРѕРІРµСЂРєР° С„Р°РјРёР»РёРё
+			.AddEndpointFilter<PhotoExistFilter>(); // РџСЂРѕРІРµСЂРєР° С„РѕС‚Рѕ
 
-			app.MapDelete("/Celebrities/{id:int}", (int id) =>
+			api.MapDelete("/{id:int}", (int id) =>
 			{
 				if (!repository.delCelebrityById(id)) throw new DelByIdException($"DELETE /Celebrities error, ID = {id}");
 				return Results.Ok($"Celebrity with Id = {id} deleted");
-			});
+			})
+			.AddEndpointFilter<IdFilter>();
 
-			app.MapPut("/Celebrities/{id:int}", (int id, Celebrity celebrity) =>
+			api.MapPut("/{id:int}", (int id, Celebrity celebrity) =>
 			{
 				int? newId = repository.updCelebrityById(id, celebrity);
 				if (newId == null) throw new UpdException($"Id={id}");
 
 				return new Celebrity((int)newId, celebrity.Firstname, celebrity.Surname, celebrity.PhotoPath);
-			});
+			})
+			.AddEndpointFilter<IdFilter>()
+			.AddEndpointFilter<FirstnameFilter>()
+			.AddEndpointFilter<SurnameFilter>();
+
 
 			app.MapFallback((HttpContext ctx) => Results.NotFound(new { error = $"path {ctx.Request.Path} not supported" }));
 

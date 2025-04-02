@@ -1,0 +1,8 @@
+.inputValue {
+    background-color: black;
+    font-size: 18px;
+    color: chartreuse;
+    padding: 10px;
+    text-align: right;
+    width: fit-content;
+}
