@@ -12,12 +12,23 @@ function App() {
   const [storedValue, setStoredValue] = useState<number | null>(null)
   const [history, setHistory] = useState<Array<string>>([])
 
+  const formatHistoryItem = (a: number, op: string, b: number, result: number | string): string => {
+    return `${a} ${op} ${b} = ${result}`;
+  };
+
+  const handleError = (message: string) => {
+    setHistory(prev => [...prev, message]);
+  }
 
   const clearDisplay = () => {
     setDisplayValue('0');
     setWaitingForOperand(false);
     setPendingOperator('');
     setStoredValue(null);
+  }
+
+  const clearHistory = () => {
+    setHistory([]);
   }
 
   const removeLastSymbol = () => {
@@ -29,6 +40,11 @@ function App() {
   }
 
   const addNumber = (num: string) => {
+
+    if (displayValue.length > 10) {
+      return;
+    }
+
     let newDisplayValue = displayValue;
 
     if (waitingForOperand) {
@@ -36,34 +52,31 @@ function App() {
       setWaitingForOperand(false);
     }
 
-    if (newDisplayValue === '0' && num != '0') {
+    if (newDisplayValue === '0' && num !== '0') {
       setDisplayValue(num);
-    }
-
-    else if (newDisplayValue != '0') {
+    } else if (newDisplayValue !== '0') {
       setDisplayValue(newDisplayValue + num);
     }
   }
 
-  const formatHistoryItem = (a: number, op: string, b: number, result: number | string): string => {
-    return `${a} ${op} ${b} = ${result}`;
-  };
-
   const addOperation = (operator: string) => {
     const operand = parseFloat(displayValue);
 
-    if (storedValue == null) {
-      setStoredValue(operand)
+    if (waitingForOperand) {
+      handleError("Введите второе число");
+      return;
     }
 
-    else if (pendingOperator) {
-      const result: number | null = calculate(operand, pendingOperator)
+    if (storedValue === null) {
+      setStoredValue(operand);
+    } else if (pendingOperator) {
+      const result: number | null = calculate(operand, pendingOperator);
 
       setHistory(prev => {
         return [...prev, formatHistoryItem(storedValue!, pendingOperator, operand, result!)];
-      })
+      });
       setStoredValue(result);
-      result == null ? setDisplayValue("Ошибка: деление на 0") : setDisplayValue(String(result));
+      result === null ? setDisplayValue("Ошибка: деление на 0") : setDisplayValue(String(result));
     }
 
     setWaitingForOperand(true);
@@ -86,7 +99,8 @@ function App() {
       setHistory(prev => {
         return [...prev, formatHistoryItem(storedValue!, pendingOperator, operand, result!)];
       });
-      setStoredValue(null)
+
+      setStoredValue(result === "Ошибка: деление на 0. Сброс" ? null : parseFloat(String(result)));
       setPendingOperator('');
     }
     else {
@@ -121,13 +135,6 @@ function App() {
     }
 
     return result
-  }
-
-  const percentSign = () => {
-    const currentValue = parseFloat(displayValue)
-    if (!isNaN(currentValue)) {
-      setDisplayValue(String(currentValue / 100))
-    }
   }
 
   const toggleSign = () => {
@@ -179,14 +186,19 @@ function App() {
             displayValue={displayValue}
             setDisplayValue={setDisplayValue}
             onKeyPress={handleKeyPress}
+            waitingForOperand={waitingForOperand}
+            pendingOperator={pendingOperator}
+            onError={handleError}
+            setWaitingForOperand={setWaitingForOperand}
+            setPendingOperator={setPendingOperator}
           />
         </div>
 
         <div className='buttons'>
           <div className='buttonLine'>
             <Button title="C" onClick={clearDisplay} />
-            <Button title="%" onClick={percentSign} />
-            <Button title="<=" onClick={removeLastSymbol} />
+            <Button title="CH" onClick={clearHistory} />
+            <Button title="⌫" onClick={removeLastSymbol} />
             <Button title="/" onClick={() => addOperation("/")} />
           </div>
           <div className='buttonLine'>

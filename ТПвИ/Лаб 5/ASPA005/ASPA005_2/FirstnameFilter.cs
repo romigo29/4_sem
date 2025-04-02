@@ -9,7 +9,7 @@ public class FirstnameFilter : IEndpointFilter
 
 	public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
 	{
-		var celebrity = context.GetArgument<Celebrity>(1);
+		var celebrity = context.GetArgument<Celebrity>(0);
 		if (string.IsNullOrWhiteSpace(celebrity.Firstname) || celebrity.Firstname.Length < 2)
 		{
 			return Results.Conflict("Firstname is wrong");

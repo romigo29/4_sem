@@ -53,14 +53,10 @@ internal class Program
 			api.MapPut("/{id:int}", (int id, Celebrity celebrity) =>
 			{
 				int? newId = repository.updCelebrityById(id, celebrity);
-				if (newId == null) throw new UpdException($"Id={id}");
 
 				return new Celebrity((int)newId, celebrity.Firstname, celebrity.Surname, celebrity.PhotoPath);
 			})
-			.AddEndpointFilter<IdFilter>()
-			.AddEndpointFilter<FirstnameFilter>()
-			.AddEndpointFilter<SurnameFilter>();
-
+			.AddEndpointFilter<IdFilter>();
 
 			app.MapFallback((HttpContext ctx) => Results.NotFound(new { error = $"path {ctx.Request.Path} not supported" }));
 

@@ -121,7 +121,7 @@ internal class Program
 		await test.ExecuteGET<string?>($"{CurrentUri}/F/smw@belstu.by", (string? x, string? y, int status) => (x == "smw@belstu.by" && y == null && status == 200) ? Test.OK : Test.NOK);
 		await test.ExecuteGET<string?>($"{CurrentUri}/F/xxx@yyy.by", (string? x, string? y, int status) => (x == "xxx@yyy.by" && y == null && status == 200) ? Test.OK : Test.NOK);
 		await test.ExecuteGET<string?>($"{CurrentUri}/F/xxx@yyy.ru", (string? x, string? y, int status) => (x == null && y == null && status == 404) ? Test.OK : Test.NOK);
-		await test.ExecuteGET<string?>($"{CurrentUri}/F/xxx@yyy.by", (string? x, string? y, int status) => (x == null && y == null && status == 404) ? Test.OK : Test.NOK);
+		await test.ExecuteGET<string?>($"{CurrentUri}/F/xxxyyy.by", (string? x, string? y, int status) => (x == null && y == null && status == 404) ? Test.OK : Test.NOK);
 		await test.ExecuteGET<string?>($"{CurrentUri}/F/xxx@yyy", (string? x, string? y, int status) => (x == null && y == null && status == 404) ? Test.OK : Test.NOK);
 
 

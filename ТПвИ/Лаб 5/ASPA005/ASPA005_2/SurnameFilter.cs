@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 public class SurnameFilter : IEndpointFilter
 {
-	public static IRepository repository; // Репозиторий для проверки дубликатов
+	public static IRepository repository; 
 
 	public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
 	{

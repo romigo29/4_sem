@@ -64,7 +64,14 @@ namespace DAL004
 
 		public Celebrity? getCelebrityById(int id)
 		{
-			return _celebrities.FirstOrDefault(c => c.Id == id);
+
+			var index = _celebrities.FindIndex(c => c.Id == id);
+			if (index == -1)
+			{
+				return null;
+			}
+
+			return _celebrities[index];
 		}
 
 		public Celebrity[] getCelebritiesBySurname(string Surname)
@@ -147,6 +154,8 @@ namespace DAL004
 	public class DelByIdException : Exception { public DelByIdException(string message) : base($"Delete by Id:{message}") { } }
 
 	public class UpdException : Exception { public UpdException(string message) : base($"Upd by{message}") { } }
+
+	public class AbsourdException : Exception { public AbsourdException(string message) : base($"Value: {message}") { } }
 
 }
 

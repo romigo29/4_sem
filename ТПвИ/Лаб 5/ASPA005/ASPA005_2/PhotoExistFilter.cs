@@ -5,12 +5,12 @@ using System.IO;
 
 public class PhotoExistFilter : IEndpointFilter
 {
-	public static IRepository repository; // Репозиторий с базовым путем к файлам
+	public static IRepository repository; 
 
 	public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
 	{
 		var celebrity = context.GetArgument<Celebrity>(0);
-		var result = await next(context); // Выполняем основной запрос
+		var result = await next(context);
 
 		string? fileName = Path.GetFileName(celebrity.PhotoPath);
 		if (!File.Exists(Path.Combine(repository.BasePath, fileName)))

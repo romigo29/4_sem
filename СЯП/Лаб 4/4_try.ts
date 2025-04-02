@@ -1,15 +1,15 @@
 
-//4
-let pr = new Promise((res, rej) => {
-    rej('ku')
-})
+// //4
+// let pr = new Promise((res, rej) => {
+//     rej('ku')
+// })
 
-pr
-    .then(() => console.log(1))
-    .catch(() => console.log(2))
-    .catch(() => console.log(3))
-    .then(() => console.log(4))
-    .then(() => console.log(5))
+// pr
+//     .then(() => console.log(1))
+//     .catch(() => console.log(2))
+//     .catch(() => console.log(3))
+//     .then(() => console.log(4))
+//     .then(() => console.log(5))
 
 // //7
 // let promise = new Promise((res, rej) => {
@@ -69,18 +69,18 @@ pr
 //     })
 
 
-// //11
-// let promise = new Promise((res, rej) => {
-//     res('Resolved promise - 1')
-// })
+//11
+let promise = new Promise((res, rej) => {
+    res('Resolved promise - 1')
+})
 
-// promise
-//     .then((res) => {
-//         console.log(res)
-//     })
-//     .then((res1) => {
-//         console.log(res1)
-//     })
+promise
+    .then((res) => {
+        console.log(res)
+    })
+    .then((res1) => {
+        console.log(res1)
+    })
 
 
 
