@@ -1,8 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Display from './Display'
 import Button from './Button'
 import History from './History'
+import {
+  ERROR_OPERAND1,
+  ERROR_OPERAND2,
+  ERROR_DIVISION_BY_ZERO,
+  MAX_DISPLAY_LENGTH,
+  ERROR_INVALID_NUMBER_FORMAT
+} from './constants'
 
 function App() {
 
@@ -11,39 +18,23 @@ function App() {
   const [pendingOperator, setPendingOperator] = useState<string>('')
   const [storedValue, setStoredValue] = useState<number | null>(null)
   const [history, setHistory] = useState<Array<string>>([])
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false)
 
-  const formatHistoryItem = (a: number, op: string, b: number, result: number | string): string => {
-    return `${a} ${op} ${b} = ${result}`;
-  };
-
-  const handleError = (message: string) => {
-    setHistory(prev => [...prev, message]);
-  }
-
-  const clearDisplay = () => {
-    setDisplayValue('0');
-    setWaitingForOperand(false);
-    setPendingOperator('');
-    setStoredValue(null);
-  }
-
-  const clearHistory = () => {
-    setHistory([]);
-  }
-
-  const removeLastSymbol = () => {
-    if (displayValue.length > 1) {
-      setDisplayValue(displayValue.slice(0, -1))
+  useEffect(() => {
+    if (isDarkTheme) {
+      document.body.classList.add('dark-theme');
     } else {
-      setDisplayValue('0')
+      document.body.classList.remove('dark-theme');
     }
-  }
+  }, [isDarkTheme]);
+
+  const toggleTheme = () => {
+    setIsDarkTheme(prev => !prev);
+  };
 
   const addNumber = (num: string) => {
 
-    if (displayValue.length > 10) {
-      return;
-    }
+    if (displayValue.length > MAX_DISPLAY_LENGTH) return;
 
     let newDisplayValue = displayValue;
 
@@ -52,22 +43,50 @@ function App() {
       setWaitingForOperand(false);
     }
 
-    if (newDisplayValue === '0' && num !== '0') {
+    if (newDisplayValue == '0' && num != '0') {
       setDisplayValue(num);
-    } else if (newDisplayValue !== '0') {
+    } else if (newDisplayValue != '0') {
       setDisplayValue(newDisplayValue + num);
     }
   }
 
+  const formatDisplayValue = (value: string): string => {
+    if (isNaN(parseFloat(value))) {
+      return value;
+    }
+
+    const num = parseFloat(value);
+
+    if (value.length > MAX_DISPLAY_LENGTH) {
+      return num.toExponential(MAX_DISPLAY_LENGTH - 5);
+    }
+
+    return value;
+  };
+
   const addOperation = (operator: string) => {
-    const operand = parseFloat(displayValue);
+    if (displayValue.includes('e')) {
+      const regex = /^-?\d+(\.\d+)?e[+-]\d+$/;
+      if (!regex.test(displayValue)) {
+        handleError("Ошибка: некорректный формат числа");
+        setDisplayValue('0');
+        return;
+      }
+    }
 
     if (waitingForOperand) {
-      handleError("Введите второе число");
+      handleError(ERROR_OPERAND2);
       return;
     }
 
-    if (storedValue === null) {
+    if (displayValue == '0') {
+      handleError(ERROR_OPERAND1);
+      return;
+    }
+
+    const operand = parseFloat(displayValue);
+
+    if (storedValue == null) {
       setStoredValue(operand);
     } else if (pendingOperator) {
       const result: number | null = calculate(operand, pendingOperator);
@@ -76,7 +95,9 @@ function App() {
         return [...prev, formatHistoryItem(storedValue!, pendingOperator, operand, result!)];
       });
       setStoredValue(result);
-      result === null ? setDisplayValue("Ошибка: деление на 0") : setDisplayValue(String(result));
+      result == null ?
+        setDisplayValue(ERROR_DIVISION_BY_ZERO) :
+        setDisplayValue(formatDisplayValue(String(result)));
     }
 
     setWaitingForOperand(true);
@@ -84,23 +105,32 @@ function App() {
   }
 
   const handleCalculation = () => {
+    if (displayValue.includes('e')) {
+      const regex = /^-?\d+(\.\d+)?e[+-]\d+$/;
+      if (!regex.test(displayValue)) {
+        handleError("Ошибка: некорректный формат числа");
+        setDisplayValue('0');
+        return;
+      }
+    }
+
     const operand = parseFloat(displayValue);
     if (pendingOperator && storedValue != null) {
       let result: number | null | string = calculate(operand, pendingOperator)
 
       if (result == null) {
         setDisplayValue('0');
-        result = "Ошибка: деление на 0. Сброс";
+        result = ERROR_DIVISION_BY_ZERO;
       }
       else {
-        setDisplayValue(String(result));
+        setDisplayValue(formatDisplayValue(String(result)));
       }
 
       setHistory(prev => {
         return [...prev, formatHistoryItem(storedValue!, pendingOperator, operand, result!)];
       });
 
-      setStoredValue(result === "Ошибка: деление на 0. Сброс" ? null : parseFloat(String(result)));
+      setStoredValue(result == ERROR_DIVISION_BY_ZERO ? null : parseFloat(String(result)));
       setPendingOperator('');
     }
     else {
@@ -115,7 +145,7 @@ function App() {
     let result: number = 0;
 
     switch (operator) {
-      case '+': {
+      case ('+'): {
         result = storedValue! + rightOperand;
         break;
       }
@@ -135,19 +165,6 @@ function App() {
     }
 
     return result
-  }
-
-  const toggleSign = () => {
-    setDisplayValue(prev => {
-      if (prev === '0') return '0';
-      return prev.startsWith('-') ? prev.substring(1) : '-' + prev;
-    });
-  }
-
-  const doteSign = () => {
-    setDisplayValue(prev => {
-      return prev.includes('.') ? prev : prev + '.'
-    })
   }
 
   const handleKeyPress = (key: string) => {
@@ -175,8 +192,55 @@ function App() {
     }
   };
 
+  const toggleSign = () => {
+    setDisplayValue(prev => {
+      if (prev === '0') return '0';
+      return prev.startsWith('-') ? prev.substring(1) : '-' + prev;
+    });
+  }
+
+  const doteSign = () => {
+    setDisplayValue(prev => {
+      return prev.includes('.') ? prev : prev + '.'
+    })
+  }
+
+  const formatHistoryItem = (a: number, op: string, b: number, result: number | string): string => {
+    return `${a} ${op} ${b} = ${typeof result == 'number' && result.toString().length > MAX_DISPLAY_LENGTH ?
+      result.toExponential(MAX_DISPLAY_LENGTH - 5) : result}`;
+  };
+
+  const handleError = (message: string) => {
+    // setHistory(prev => [...prev, message]);
+    alert(message);
+  }
+
+  const clearDisplay = () => {
+    setDisplayValue('0');
+    setWaitingForOperand(false);
+    setPendingOperator('');
+    setStoredValue(null);
+  }
+
+  const clearHistory = () => {
+    setHistory([]);
+  }
+
+  const removeLastSymbol = () => {
+    if (displayValue.length > 1) {
+      setDisplayValue(displayValue.slice(0, -1))
+    } else {
+      setDisplayValue('0')
+    }
+  }
+
+
   return (
-    <>
+    <div className="container">
+      <button className="theme-toggle" onClick={toggleTheme}>
+        {isDarkTheme ? '☀️' : '🌙'}
+      </button>
+
       <div className='calculator'>
         <div className='history-container'>
           <History history={history} />
@@ -227,7 +291,7 @@ function App() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

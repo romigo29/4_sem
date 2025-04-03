@@ -1,14 +1,32 @@
 .history-container {
-    margin-bottom: 10px;
-  }
-  
-  .history {
-    background-color: #444;
-    font-size: 12px;
-    color: #bed1c3;
-    border-radius: 5px;
-    padding: 10px;
-    max-height: 60px;
-    overflow-y: auto;
-    text-align: left;
-  }
+  margin-bottom: 10px;
+}
+
+.history {
+  width: 100%;
+  color: var(--display-text);
+}
+
+.history-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: var(--display-text);
+}
+
+.history-empty {
+  font-style: italic;
+  color: var(--display-text);
+  opacity: 0.7;
+}
+
+.history-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.history-item {
+  font-size: 0.9rem;
+  color: var(--display-text);
+  word-break: break-word;
+}
