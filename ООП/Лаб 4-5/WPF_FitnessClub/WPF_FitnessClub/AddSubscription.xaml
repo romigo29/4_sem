@@ -7,38 +7,128 @@
         mc:Ignorable="d"
         MinWidth="600px"
         MinHeight="300px"
-        Title="AddSubscription" Height="450" Width="800">
-    <Viewbox >
-        <Grid Margin="30 10 30 0">
+        Title="{DynamicResource AddSubscriptionTitle}" Height="450" Width="800">
+
+        <Grid Margin="30 0 30 0">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition/>
             <RowDefinition/>
-        </Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition MinWidth="100"/>
             </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" 
-                Text="Добавление услуги"
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" 
+                Text="{DynamicResource AddSubscriptionTitle}"
                 HorizontalAlignment="Center" 
-                FontSize="20" 
+                FontSize="24" 
                 FontWeight="Bold"/>
 
-                <TextBlock 
-                    Text="Название Услуги"
+            <TextBlock 
+                    Text="{DynamicResource SubscriptionName}"
                     HorizontalAlignment="Center"
                     Grid.Row="1"
                     Grid.Column="0"
                     Margin="30 10 30 0"/>
 
             <TextBox
+                Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                 x:Name="InputName"
                 Grid.Row="1"
-                  Grid.Column="1"/>
+                 Grid.Column="1"/>
+
+
+            <TextBlock 
+                Text="{DynamicResource SubscriptionPrice}"
+                HorizontalAlignment="Center"
+                Grid.Row="2"
+                Grid.Column="0"/>
+
+            <TextBox x:Name="InputPrice"
+                Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
+                Grid.Row="2"
+                Grid.Column="1"/>
+
+            <TextBlock 
+                Text="{DynamicResource SubscriptionDescription}"
+                HorizontalAlignment="Center"
+                Grid.Row="3"
+                Grid.Column="0"
+                Margin="30 10 30 0"/>
+
+            <TextBox x:Name="InputDescription"
+                Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
+                Grid.Row="3"
+                Grid.Column="1"/>
+
+        <TextBlock 
+            Text="{DynamicResource SelectImage}"
+            HorizontalAlignment="Center"
+            Grid.Row="4"
+            Grid.Column="0"
+            Margin="30 10 30 0"/>
+
+        <Button x:Name="ChoosePhoto"
+            Content="{DynamicResource SelectImage}"
+            Command="{Binding SelectImageCommand}"
+            Grid.Row="4"
+            Grid.Column="1"/>
+
+        <TextBlock 
+            Text="{DynamicResource Duration}"
+            HorizontalAlignment="Center"
+            Grid.Row="5"
+            Grid.Column="0"
+            Margin="30 10 30 0"/>
+
+            <ComboBox x:Name="ChooseDuration"
+            Grid.Row="5"
+            Grid.Column="1">
+                <ComboBoxItem Content="{DynamicResource OneMonth}"/>
+                <ComboBoxItem Content="{DynamicResource ThreeMonths}"/>
+                <ComboBoxItem Content="{DynamicResource SixMonths}"/>
+                <ComboBoxItem Content="{DynamicResource OneYear}"/>
+            </ComboBox>
+
+            <TextBlock 
+            Text="{DynamicResource Type}"
+            HorizontalAlignment="Center"
+            Grid.Row="6"
+            Grid.Column="0"
+            Margin="30 10 30 0"/>
+
+            <ComboBox x:Name="ChooseType"
+                Grid.Row="6"
+                Grid.Column="1">
+                <ComboBoxItem Content="{DynamicResource Standard}"/>
+                <ComboBoxItem Content="{DynamicResource Unlimited}"/>
+            </ComboBox>
+
+
+            <StackPanel Grid.Row="7" 
+                        Grid.ColumnSpan="2"
+            Orientation="Horizontal" 
+            HorizontalAlignment="Center" 
+            Margin="0,20,0,0">
+                <Button Content="{DynamicResource SaveButton}" 
+            Width="100" 
+            Height="30" 
+            Margin="0,0,10,0"
+            Command="{Binding SaveCommand}" Style="{DynamicResource DefaultButton}"/>
+                <Button Content="{DynamicResource CancelButton}" 
+            Width="100" 
+            Height="30"
+            Command="{Binding CancelCommand}" Style="{DynamicResource DefaultButton}"/>
+            </StackPanel>
         </Grid>
-    </Viewbox>
+
 </Window>

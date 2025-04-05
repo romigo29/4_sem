@@ -21,7 +21,7 @@
                 Title="Тренажерный зал"
                 Description="Современный тренажерный зал с профессиональным оборудованием. Доступны все виды тренажеров, зона для свободных весов и кардио-зона."
                 Price="Цена: 2000 ₽/месяц"
-                ImageSource="/iron1.jpg"/>
+                ImageSource="/Images/iron1.jpg"/>
 
             <userControls:ServiceCard 
                 Title="Групповые занятия"

@@ -5,6 +5,11 @@ VisualStudioVersion = 17.12.35728.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_FitnessClub", "WPF_FitnessClub\WPF_FitnessClub.csproj", "{AC1A7AA5-A46F-4CD4-ADC4-859BD8F24717}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{55452B9D-531C-440D-8941-17BA8A28FAA5}"
+	ProjectSection(SolutionItems) = preProject
+		WPF_FitnessClub\Images\iron1.jpg = WPF_FitnessClub\Images\iron1.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

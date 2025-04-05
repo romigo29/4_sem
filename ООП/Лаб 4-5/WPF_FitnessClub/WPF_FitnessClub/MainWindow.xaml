@@ -6,105 +6,143 @@
         xmlns:local="clr-namespace:WPF_FitnessClub"
         mc:Ignorable="d"
         MinWidth="600px"
-        MinHeight="500px"
-        Title="FitnessClubApp" Height="450" Width="800" WindowStyle="ThreeDBorderWindow">
+        MinHeight="520px"
+        Title="{DynamicResource MainWindowTitle}" Height="450" Width="800" WindowStyle="ThreeDBorderWindow">
     <Grid>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="13*"/>
+            <ColumnDefinition Width="27*"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="30px"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DockPanel LastChildFill="True">
-            
-            
-        <!--#region Меню навигации-->
-            <Menu 
-            DockPanel.Dock="Top"
-            MinWidth="30px" 
-            Background="#FF3A3434"
-            Padding="10,10,20,10" 
-            Foreground="White" FontSize="14">
+        <!-- Существующий контент -->
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="200px" MinWidth="150"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                <Menu.ItemsPanel>
-                    <ItemsPanelTemplate>
-                    <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    </Grid>
-                    </ItemsPanelTemplate>
-                </Menu.ItemsPanel>
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="30px"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="60px"/>
+            </Grid.RowDefinitions>
 
-                <MenuItem Header="Главная" HorizontalAlignment="Center" Grid.Column="0"/>
-                    <MenuItem x:Name="Subscriptions" Header="Абонементы" Grid.Column="1" Click="Subscriptions_Click"/>
-                    <MenuItem Header="Тренировки" Grid.Column="2">
-                        <MenuItem Header="Расписание занятий" Foreground="White" Background="#FFC01313"/>
-                        <MenuItem Header="Персональные тренировки" Background="#FFC01313" Foreground="White"/>
-                        <MenuItem Header="Групповые занятия" Background="#FFC01313"/>
+            <DockPanel Grid.ColumnSpan="2">
+
+
+                <!--#region Меню навигации-->
+                <Menu 
+                DockPanel.Dock="Top"
+                MinWidth="30px" 
+                Background="#FF3A3434"
+                Padding="10,10,20,10" 
+                Foreground="White" FontSize="14">
+
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                            </Grid>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+
+                    <MenuItem Header="{DynamicResource Home}" HorizontalAlignment="Center" Grid.Column="0"/>
+                    <MenuItem x:Name="Subscriptions" Header="{DynamicResource Subscriptions}" Grid.Column="1"/>
+                    <MenuItem Header="{DynamicResource Training}" Grid.Column="2">
+                        <MenuItem Header="{DynamicResource ScheduleClasses}" Foreground="White" Background="#FFC01313"/>
+                        <MenuItem Header="{DynamicResource PersonalTraining}" Background="#FFC01313" Foreground="White"/>
+                        <MenuItem Header="{DynamicResource GroupClasses}" Background="#FFC01313"/>
                     </MenuItem>
-                    <MenuItem Header="Тренеры" Grid.Column="3"/>
-                    <MenuItem Header="Контакты" Grid.Column="4"/>
-            
-            </Menu>
-            <!--#endregion-->
+                    <MenuItem Header="{DynamicResource Trainers}" Grid.Column="3"/>
+                    <MenuItem Header="{DynamicResource Contacts}" Grid.Column="4"/>
 
-        <!--#region Прокрутка-->
+                </Menu>
+                <!--#endregion-->
 
-            <ScrollViewer >
 
-            <StackPanel Grid.Row="0" Margin="40" >
-                
+                <!--#endregion Фильтр и поиск-->
+                <Border Padding="10,10,10,10">
+
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70*"/>
-                            <ColumnDefinition Width="11*"/>
-                            <ColumnDefinition Width="59*"/>
-                        </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="10*"/>
                         </Grid.RowDefinitions>
 
-                        <Image Source="/iron1.jpg" HorizontalAlignment="Center" Grid.Row="0" Stretch="Fill"/>
-                        <TextBox Text="Тренажерный зал" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" TextChanged="TextBox_TextChanged"/>
+                        <Button x:Name="ManipulateFilterPanel" HorizontalContentAlignment="Right" Content="{DynamicResource HidePanelButton}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="ManipulateFilterPanel_Click" Background="#FFDDDDDD" Style="{DynamicResource DefaultButton}" />
+                        <StackPanel x:Name="SearchFilterPanel" Grid.Column ="1" Grid.Row="1">
+
+
+                            <TextBlock Text="{DynamicResource SearchButton}" Padding="20,0,20,0" />
+                            <TextBox x:Name="SearchSubscription" Width="190" TextChanged="SearchSubscription_TextChanged"/>
+
+                            <TextBlock Text="{DynamicResource Price}" Padding="20,20,20,0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,5" />
+                            <Grid>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="6*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{DynamicResource From}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="MinCost" Grid.Column="1" Margin="0,0,0,10" TextChanged="MinCost_TextChanged"/>
+                                <TextBlock Text="{DynamicResource To}" Grid.Row="1" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="MaxCost" Grid.Column="1" Grid.Row="1" TextChanged="MaxCost_TextChanged"/>
+                            </Grid>
+
+                            <TextBlock Text="{DynamicResource Type}" Padding="20,20,0,0"/>
+                            <ComboBox x:Name="FilterType" SelectionChanged="FilterType_SelectionChanged">
+                                <ComboBoxItem Content="{DynamicResource Unlimited}"/>
+                                <ComboBoxItem Content="{DynamicResource Standard}"/>
+                            </ComboBox>
+
+                            <TextBlock Text="{DynamicResource Duration}" Margin="20,20,0,0" />
+                            <ComboBox x:Name="FilterDuration" SelectionChanged="FilterDuration_SelectionChanged">
+                                <ComboBoxItem Content="{DynamicResource OneMonth}"/>
+                                <ComboBoxItem Content="{DynamicResource ThreeMonths}"/>
+                                <ComboBoxItem Content="{DynamicResource SixMonths}"/>
+                                <ComboBoxItem Content="{DynamicResource OneYear}"/>
+                            </ComboBox>
+
+                        </StackPanel>
 
                     </Grid>
-                
-            </StackPanel>
-        </ScrollViewer>
-            
-        <!--#endregion-->
+                </Border>
 
-            
-        <!--#region Нижняя панель кнопок-->
-        </DockPanel>
-        
+                <!--#region Панель услуг-->
+                <ScrollViewer x:Name="SubscriptionsPanel1" Grid.Column="0">
+                    <WrapPanel x:Name="SubscriptionsPanel" HorizontalAlignment="Center"/>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!--#region Нижняя панель кнопок-->
             <StackPanel
-                Grid.Row="2" 
-                Orientation="Horizontal"
-                HorizontalAlignment="Center"
-                
-                Margin="0 20 0 20">
-                
+                    Grid.Row="2" 
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0 20 0 20">
 
-            <Button x:Name="AddButon" Content="Добавить" Click="AddButon_Click"/>
-            <Button Content="Редактировать"/>
-            <Button Content="Удалить"/>
-        </StackPanel>
-       <!--#endregion-->
+                <Button x:Name="AddSubscriptionButon" Content="{DynamicResource AddButon}" Click="AddButon_Click" Style="{DynamicResource DefaultButton}"/>
+            </StackPanel>
+            <!--#endregion-->
 
-
+        </Grid>
     </Grid>
-
 </Window>
