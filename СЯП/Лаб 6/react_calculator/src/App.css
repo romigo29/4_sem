@@ -92,7 +92,6 @@ button:active {
   background-color: var(--button-active);
 }
 
-/* Кнопка переключения темы */
 .theme-toggle {
   position: absolute;
   top: 10px;
@@ -127,7 +126,6 @@ button:active {
   margin: 0 auto;
 }
 
-/* Для корректной работы в родительском контейнере */
 #root {
   width: 100%;
   margin: 0;

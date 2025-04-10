@@ -8,7 +8,7 @@ import {
   ERROR_OPERAND2,
   ERROR_DIVISION_BY_ZERO,
   MAX_DISPLAY_LENGTH,
-  ERROR_INVALID_NUMBER_FORMAT
+  ERROR_INVALID_NUMBER_FORMAT,
 } from './constants'
 
 function App() {
@@ -58,17 +58,18 @@ function App() {
     const num = parseFloat(value);
 
     if (value.length > MAX_DISPLAY_LENGTH) {
-      return num.toExponential(MAX_DISPLAY_LENGTH - 5);
+      return num.toExponential(MAX_DISPLAY_LENGTH - 10);
     }
 
     return value;
   };
 
   const addOperation = (operator: string) => {
+
     if (displayValue.includes('e')) {
       const regex = /^-?\d+(\.\d+)?e[+-]\d+$/;
       if (!regex.test(displayValue)) {
-        handleError("Ошибка: некорректный формат числа");
+        handleError(ERROR_INVALID_NUMBER_FORMAT);
         setDisplayValue('0');
         return;
       }
@@ -108,7 +109,7 @@ function App() {
     if (displayValue.includes('e')) {
       const regex = /^-?\d+(\.\d+)?e[+-]\d+$/;
       if (!regex.test(displayValue)) {
-        handleError("Ошибка: некорректный формат числа");
+        handleError(ERROR_INVALID_NUMBER_FORMAT);
         setDisplayValue('0');
         return;
       }
@@ -117,6 +118,9 @@ function App() {
     const operand = parseFloat(displayValue);
     if (pendingOperator && storedValue != null) {
       let result: number | null | string = calculate(operand, pendingOperator)
+
+      typeof result == 'number' && result.toString().length > MAX_DISPLAY_LENGTH ?
+        result = result.toExponential(MAX_DISPLAY_LENGTH - 10) : result
 
       if (result == null) {
         setDisplayValue('0');
@@ -137,7 +141,7 @@ function App() {
       setStoredValue(operand);
     }
 
-    setWaitingForOperand(true);
+    setWaitingForOperand(false);
   }
 
   const calculate = (rightOperand: number, operator: string) => {
@@ -207,7 +211,7 @@ function App() {
 
   const formatHistoryItem = (a: number, op: string, b: number, result: number | string): string => {
     return `${a} ${op} ${b} = ${typeof result == 'number' && result.toString().length > MAX_DISPLAY_LENGTH ?
-      result.toExponential(MAX_DISPLAY_LENGTH - 5) : result}`;
+      result.toExponential(MAX_DISPLAY_LENGTH - 10) : result}`;
   };
 
   const handleError = (message: string) => {
@@ -227,13 +231,14 @@ function App() {
   }
 
   const removeLastSymbol = () => {
+
     if (displayValue.length > 1) {
       setDisplayValue(displayValue.slice(0, -1))
     } else {
       setDisplayValue('0')
     }
-  }
 
+  }
 
   return (
     <div className="container">

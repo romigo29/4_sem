@@ -1,5 +1,3 @@
-// import { useState } from "react"
-// import { useRef, useEffect, useState } from 'react'
 import './Display.css'
 import {
     ERROR_OPERAND1,
@@ -41,7 +39,7 @@ function Display({
 
         if (newValue.includes('e')) {
             const regex = /^-?\d+(\.\d+)?e[+-]\d+$/;
-            if (!regex.test(newValue) && newValue.length > 1) {
+            if (!regex.test(newValue)) {
                 onError(ERROR_INVALID_NUMBER_FORMAT);
                 return;
             }

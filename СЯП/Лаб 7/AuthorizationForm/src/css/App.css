@@ -1,0 +1,92 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.formCard {
+  width: 500px;
+  border: 1px solid #e0e0e0;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.fields {
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.links {
+  display: flex;
+  text-align: left;
+  flex-flow: column wrap;
+  padding-left: 1.5rem;
+}
+
+.errorMessage {
+  color: red;
+}
+
+
+.successMessage {
+  border: 1px solid green;
+  background-color: mintcream;
+  margin: 1rem 0 0 1.5rem;
+  padding: 1rem;
+  text-align: left;
+  color: green;
+}
+
+.collapseMessage {
+  border: 1px solid red;
+  background-color: mistyrose;
+  margin: 1rem 0 0 1.5rem;
+  padding: 1rem;
+  text-align: left;
+}
+
+.formCard input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formCard input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.formCard button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formCard button:hover {
+  background-color: #357abd;
+}
+
+@media (max-width: 640px) {
+  .formCard {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+}

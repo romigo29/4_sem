@@ -4,4 +4,4 @@ export const ERROR_OPERATOR: string = "Ошибка: ожидается ввод
 export const ERROR_DIVISION_BY_ZERO: string = "Ошибка: деление на 0. Сброс";
 export const ERROR_INVALID_NUMBER_FORMAT: string = "Ошибка: некорректный формат числа";
 
-export const MAX_DISPLAY_LENGTH: number = 10; 
+export const MAX_DISPLAY_LENGTH: number = 15; 
