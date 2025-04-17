@@ -3,21 +3,25 @@ exec SP_HELPINDEX 'ТОВАР'
 exec SP_HELPINDEX 'СКЛАД' 
 exec SP_HELPINDEX 'УСЛУГА' 
 
+select * into ТОВАР_copy from ТОВАР
+
 checkpoint; --фиксация БД
 DBCC DROPCLEANBUFFERS; --очистить буферный кэш
+select * from ТОВАР_copy
+where цена >= 1500 and цена <= 3000 
+order by Цена
 
-select * from ТОВАР
-where Цена between 200 and 1000 order by Цена
-create index #ТОВАР_nonclu on ТОВАР(Наименование_товара, цена)
-drop index #ТОВАР_nonclu on ТОВАР
+create clustered index #ТОВАР_clustered on Товар_copy(Цена, наименование_товара)
+drop index #ТОВАР_clustered on Товар_copy
 
-create index #ТОВАР_nonclu2 on ТОВАР(цена) include (Наименование_товара)
-drop index #ТОВАР_nonclu2 on ТОВАР
+create index #ТОВАР_nonclu on ТОВАР_copy(цена, Наименование_товара)
+drop index #ТОВАР_nonclu on ТОВАР_copy
 
-create index #ТОВАР_nonclu3 on ТОВАР(цена) where (цена >= 1500 and цена <= 3000)
-drop index #ТОВАР4_nonclu3 on ТОВАР
+create index #ТОВАР_nonclu2 on ТОВАР_copy(цена) include (Наименование_товара)
+drop index #ТОВАР_nonclu2 on ТОВАР_copy
 
-create index #ТОВАР_nonclu4 on ТОВАР(цена) with (fillfactor=80)
-drop index #ТОВАР_nonclu4 on ТОВАР
+create index #ТОВАР_nonclu3 on ТОВАР_copy(цена) where (цена >= 1500 and цена <= 3000)
+drop index #ТОВАР_nonclu3 on ТОВАР_copy
 
-
+create index #ТОВАР_nonclu4 on ТОВАР_copy(цена) with (fillfactor=80)
+drop index #ТОВАР_nonclu4 on ТОВАР_copy
