@@ -1,0 +1,22 @@
+    <!-- Личный кабинет -->
+    <system:String x:Key="PersonalAccountTitle">Личный кабинет</system:String>
+    <system:String x:Key="CurrentPassword">Текущий пароль</system:String>
+    <system:String x:Key="NewPassword">Новый пароль</system:String>
+    <system:String x:Key="ConfirmNewPassword">Подтвердите новый пароль</system:String>
+    <system:String x:Key="EditButton">Редактировать</system:String>
+    <system:String x:Key="SaveButton">Сохранить</system:String>
+    <system:String x:Key="CancelButton">Отмена</system:String>
+    <system:String x:Key="YourOpinionMatters">Ваше мнение важно для нас</system:String>
+    <system:String x:Key="Rating">Оценка</system:String>
+    <system:String x:Key="Comment">Комментарий</system:String>
+    <system:String x:Key="Reviews">Отзывы</system:String>
+    <system:String x:Key="UserName">Имя пользователя</system:String>
+    <system:String x:Key="SaveSuccessful">Изменения успешно сохранены</system:String>
+    <system:String x:Key="UnsavedChangesMessage">Есть несохраненные изменения. Хотите сохранить их перед закрытием?</system:String>
+    <system:String x:Key="Warning">Предупреждение</system:String>
+    <system:String x:Key="RussianLanguage">Русский</system:String>
+    <system:String x:Key="EnglishLanguage">English</system:String>
+    <system:String x:Key="LanguageSelection">Выбор языка</system:String>
+    <system:String x:Key="PersonalInfoTab">Личная информация</system:String>
+    <system:String x:Key="AppSettingsTab">Настройки</system:String>
+    <system:String x:Key="SecurityTab">Безопасность</system:String> 

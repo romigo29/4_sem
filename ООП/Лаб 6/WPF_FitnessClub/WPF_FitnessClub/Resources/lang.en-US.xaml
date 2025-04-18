@@ -1,0 +1,22 @@
+    <!-- Personal Account -->
+    <system:String x:Key="PersonalAccountTitle">Personal Account</system:String>
+    <system:String x:Key="CurrentPassword">Current Password</system:String>
+    <system:String x:Key="NewPassword">New Password</system:String>
+    <system:String x:Key="ConfirmNewPassword">Confirm New Password</system:String>
+    <system:String x:Key="EditButton">Edit</system:String>
+    <system:String x:Key="SaveButton">Save</system:String>
+    <system:String x:Key="CancelButton">Cancel</system:String>
+    <system:String x:Key="YourOpinionMatters">Your Opinion Matters</system:String>
+    <system:String x:Key="Rating">Rating</system:String>
+    <system:String x:Key="Comment">Comment</system:String>
+    <system:String x:Key="Reviews">Reviews</system:String>
+    <system:String x:Key="UserName">Username</system:String>
+    <system:String x:Key="SaveSuccessful">Changes saved successfully</system:String>
+    <system:String x:Key="UnsavedChangesMessage">There are unsaved changes. Would you like to save them before closing?</system:String>
+    <system:String x:Key="Warning">Warning</system:String>
+    <system:String x:Key="RussianLanguage">Russian</system:String>
+    <system:String x:Key="EnglishLanguage">English</system:String>
+    <system:String x:Key="LanguageSelection">Language Selection</system:String>
+    <system:String x:Key="PersonalInfoTab">Personal Info</system:String>
+    <system:String x:Key="AppSettingsTab">Settings</system:String>
+    <system:String x:Key="SecurityTab">Security</system:String> 
