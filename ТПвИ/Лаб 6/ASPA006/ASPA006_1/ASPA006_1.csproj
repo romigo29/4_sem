@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\images\Babbage.jpg" />
+    <Content Remove="wwwroot\images\Berners-Lee.jpg" />
+    <Content Remove="wwwroot\images\Chomsky.jpg" />
+    <Content Remove="wwwroot\images\Codd.jpg" />
+    <Content Remove="wwwroot\images\Dijkstra.jpg" />
+    <Content Remove="wwwroot\images\Einstein.jpg" />
+    <Content Remove="wwwroot\images\Ershov.jpg" />
+    <Content Remove="wwwroot\images\Huntington.jpg" />
+    <Content Remove="wwwroot\images\Knuth.jpg" />
+    <Content Remove="wwwroot\images\Linus.jpg" />
+    <Content Remove="wwwroot\images\Lovelace.jpg" />
+    <Content Remove="wwwroot\images\Neumann.jpg" />
+    <Content Remove="wwwroot\images\Tanenbaum.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\Babbage.jpg" />
+    <None Include="wwwroot\images\Berners-Lee.jpg" />
+    <None Include="wwwroot\images\Chomsky.jpg" />
+    <None Include="wwwroot\images\Codd.jpg" />
+    <None Include="wwwroot\images\Dijkstra.jpg" />
+    <None Include="wwwroot\images\Einstein.jpg" />
+    <None Include="wwwroot\images\Ershov.jpg" />
+    <None Include="wwwroot\images\Huntington.jpg" />
+    <None Include="wwwroot\images\Knuth.jpg" />
+    <None Include="wwwroot\images\Linus.jpg" />
+    <None Include="wwwroot\images\Lovelace.jpg" />
+    <None Include="wwwroot\images\Neumann.jpg" />
+    <None Include="wwwroot\images\Tanenbaum.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.3" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DAL_Celebrity\DAL_Celebrity.csproj" />
+    <ProjectReference Include="..\DAL_Celebrity_MSSQL\DAL_Celebrity_MSSQL.csproj" />
+    <ProjectReference Include="..\DAL_Celebrity_MSSQL_Test\DAL_Celebrity_MSSQL_Test.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\images\Celeberities.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
