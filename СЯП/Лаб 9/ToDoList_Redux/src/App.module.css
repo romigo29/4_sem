@@ -1,0 +1,119 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.todoContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.inputContainer {
+    display: flex;
+    margin-bottom: 1.5rem;
+    gap: 10px;
+}
+
+.inputTasks {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+
+.button {
+    padding: 8px 16px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.button:hover {
+    background-color: #3a7fcb;
+}
+
+.deleteButton {
+    background-color: #e25c5c;
+}
+
+.deleteButton:hover {
+    background-color: #c74747;
+}
+
+.editButton {
+    background-color: #5cb85c;
+}
+
+.editButton:hover {
+    background-color: #4c9b4c;
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.todoItem {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: transform 0.1s, box-shadow 0.3s;
+}
+
+.todoText {
+    flex: 1;
+    text-align: left;
+    padding: 0 15px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.todoDone {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.todoInput {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-right: 15px;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.buttonsContainer {
+    display: flex;
+    gap: 8px;
+}
