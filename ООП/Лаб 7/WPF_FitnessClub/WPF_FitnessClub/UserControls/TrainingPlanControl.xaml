@@ -1,0 +1,134 @@
+<UserControl x:Class="WPF_FitnessClub.UserControls.TrainingPlanControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_FitnessClub.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="300">
+    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="5" Padding="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Заголовок -->
+            <TextBlock Grid.Row="0" 
+                       Text="План тренировки" 
+                       FontSize="16" 
+                       FontWeight="Bold" 
+                       Margin="0,0,0,15" 
+                       HorizontalAlignment="Center"/>
+
+            <!-- Длительность тренировки -->
+            <Grid Grid.Row="1" Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" 
+                           Text="Длительность:" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,0"/>
+                
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBox x:Name="DurationTextBox" 
+                             Grid.Column="0"
+                             Text="{Binding Duration, RelativeSource={RelativeSource AncestorType=local:TrainingPlanControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                    
+                    <TextBlock Grid.Column="1" 
+                               Text="мин" 
+                               VerticalAlignment="Center" 
+                               Margin="5,0,0,0"/>
+                </Grid>
+            </Grid>
+
+            <!-- Количество упражнений -->
+            <Grid Grid.Row="2" Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" 
+                           Text="Упражнения:" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,0"/>
+                
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBox x:Name="ExercisesCountTextBox" 
+                             Grid.Column="0"
+                             Text="{Binding ExercisesCount, RelativeSource={RelativeSource AncestorType=local:TrainingPlanControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                    
+                    <TextBlock Grid.Column="1" 
+                               Text="шт" 
+                               VerticalAlignment="Center" 
+                               Margin="5,0,0,0"/>
+                </Grid>
+            </Grid>
+
+            <!-- Уровень сложности -->
+            <Grid Grid.Row="3" Margin="0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" 
+                           Text="Сложность:" 
+                           VerticalAlignment="Center" 
+                           Margin="0,0,10,0"/>
+                
+                <ComboBox Grid.Column="1" 
+                          x:Name="DifficultyComboBox"
+                          SelectedIndex="{Binding Difficulty, RelativeSource={RelativeSource AncestorType=local:TrainingPlanControl}, Mode=TwoWay}">
+                    <ComboBoxItem Content="Легкий"/>
+                    <ComboBoxItem Content="Средний"/>
+                    <ComboBoxItem Content="Сложный"/>
+                    <ComboBoxItem Content="Экстремальный"/>
+                </ComboBox>
+            </Grid>
+
+            <!-- Рассчитанная нагрузка -->
+            <Border Grid.Row="4" 
+                   Background="{Binding IntensityBackground, RelativeSource={RelativeSource AncestorType=local:TrainingPlanControl}}"
+                   CornerRadius="3"
+                   Margin="0,15,0,0"
+                   Padding="10,5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" 
+                              Text="Интенсивность:" 
+                              FontWeight="Bold"
+                              VerticalAlignment="Center" 
+                              Margin="0,0,10,0"/>
+                    
+                    <TextBlock Grid.Column="1" 
+                              Text="{Binding Intensity, RelativeSource={RelativeSource AncestorType=local:TrainingPlanControl}}"
+                              VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl> 

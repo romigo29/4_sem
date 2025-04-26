@@ -1,0 +1,253 @@
+﻿<Window x:Class="WPF_FitnessClub.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_FitnessClub"
+        mc:Ignorable="d"
+        MinWidth="600px"
+        MinHeight="520px"
+        Title="{DynamicResource MainWindowTitle}" 
+        Height="450" 
+        Width="800" 
+        Style="{StaticResource WindowStyle}">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:Commands.LogoutCommand}" 
+                        Executed="LogoutCommand_Executed" 
+                        CanExecute="LogoutCommand_CanExecute"/>
+    </Window.CommandBindings>
+
+    <Grid Style="{StaticResource ResponsiveGridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!--#region Меню-->
+        <Border Grid.Column="0" Style="{StaticResource CustomBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Верхние кнопки -->
+                <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,10,0,0">
+                    <!-- Используем пузырьковую маршрутизацию (bubbling) для кнопок в стек-панели -->
+                    <Button x:Name="HomeButton" 
+                            Content="⌂"
+                            Style="{StaticResource CircleButtonStyle}" 
+                            Margin="3,3,3,3"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            PreviewMouseDown="HomeButton_PreviewMouseDown"
+                            />
+
+                    <Button x:Name="TrainingsButyon" 
+                            Content="📋"
+                            Style="{StaticResource CircleButtonStyle}" 
+                            Margin="3,3,3,3"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            ToolTip="План тренировок"
+                            Click="Statistics_Click"/>        
+
+                    <Button x:Name="AddSubscriptionButon" 
+                            Content="✚" 
+                            Style="{StaticResource CircleButtonStyle}" 
+                            Margin="3,3,3,3"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Visibility="{Binding EditModeVisible}"
+                            Click="AddButon_Click" />
+                </StackPanel>
+                
+                <!-- Средняя часть -->
+                <StackPanel x:Name="RootPanel"
+                        Grid.Row="1"
+                        Orientation="Vertical">
+                    <Button x:Name="TestControlsButton"
+                            Margin="3"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            ToolTip="Тестировать пользовательские элементы управления">     
+                        <Ellipse x:Name="TestEllipse"
+                             Fill="{DynamicResource PrimaryRedBrush}"
+                             Width="40" Height="41" />
+                                </Button>
+
+                </StackPanel>   
+
+
+                <!-- Нижняя панель кнопок -->
+                <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,0,0,10">
+                    <!-- Используем тоннельную маршрутизацию (tunneling) для предварительной проверки прав доступа -->
+                    <Button x:Name="UndoButton" 
+                            Content="↩" 
+                            Margin="3,3,3,3"
+                            FontSize="20"
+                            FontWeight="Normal"
+                            Foreground="White"
+                            Visibility="{Binding EditModeVisible}"
+                            Style="{DynamicResource CircleButtonStyle}" 
+                            Click="UndoButton_Click"/>
+
+                    <Button x:Name="RedoButton" 
+                            Content="↪"  
+                            Margin="3,3,3,3"
+                            FontSize="20"
+                            FontWeight="Normal"
+                            Foreground="White"
+                            Visibility="{Binding EditModeVisible}"
+                            Style="{DynamicResource CircleButtonStyle}" 
+                            Click="RedoButton_Click"/>
+
+                    
+                    <Button x:Name="PersonalAccountButon" 
+                            Content="👤" 
+                            Style="{StaticResource CircleButtonStyle}" 
+                            Margin="3,3,3,3"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            Click="PersonalAccountButon_Click"/>
+                    
+                    <Button x:Name="LogoutButton" 
+                            Content="🚪" 
+                            Style="{StaticResource CircleButtonStyle}" 
+                            Margin="3,3,3,3"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Foreground="White"
+                            ToolTip="Выйти из системы (Alt+Esc)"
+                            Command="{x:Static local:Commands.LogoutCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <!--#endregion-->
+            
+        <!--#region Панель услуг-->
+        <ScrollViewer x:Name="SubscriptionsPanel1" 
+                     Grid.Column="1" 
+                     Style="{StaticResource ResponsiveScrollViewerStyle}">
+            <WrapPanel x:Name="SubscriptionsPanel" 
+                      Style="{StaticResource ResponsiveWrapPanelStyle}"
+                      />
+        </ScrollViewer>
+        <!--#endregion-->
+
+        <!--#region Фильтр и поиск-->
+        <Button x:Name="ManipulateFilterPanel" 
+                Grid.Column="2"
+                HorizontalContentAlignment="Right" 
+                Content="◀" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Right" 
+                Click="ManipulateFilterPanel_Click" 
+                Style="{StaticResource DefaultButtonStyle}" 
+                Margin="10"
+                Padding="10,5"/>
+
+        <Border Grid.Column="2" 
+                Style="{StaticResource CustomBorderStyle}"
+                MinWidth="200"
+                MaxWidth="300"
+                Visibility="{Binding FilterPanelVisibility}"
+                Margin="0,40,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel x:Name="SearchFilterPanel" 
+                           Grid.Column="1" 
+                           Grid.Row="1" 
+                           MaxWidth="200">
+                    <TextBlock Text="{DynamicResource SearchButton}" 
+                             Padding="20,0,20,0" 
+                             Style="{StaticResource HeaderTextBlockStyle}" />
+
+                    <TextBox x:Name="SearchSubscription" 
+                             Width="190" 
+                             TextChanged="SearchSubscription_TextChanged" 
+                             Style="{StaticResource CustomTextBoxStyle}"/>
+
+                    <TextBlock Text="{DynamicResource Price}" 
+                             Padding="20,20,20,0" 
+                             HorizontalAlignment="Left" 
+                             VerticalAlignment="Center" 
+                             Margin="0,0,0,5" 
+                             Style="{StaticResource HeaderTextBlockStyle}" />
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="6*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{DynamicResource From}" 
+                                 HorizontalAlignment="Center" 
+                                 Style="{StaticResource CustomTextBlockStyle}"
+                                   TextWrapping="NoWrap"/>
+
+                        <TextBox x:Name="MinCost" 
+                                Grid.Column="1" 
+                                Margin="20,0,0,10" 
+                                TextChanged="MinCost_TextChanged" 
+                                Style="{StaticResource CustomTextBoxStyle}"/>
+
+                        <TextBlock Text="{DynamicResource To}" 
+                                 Grid.Row="1" 
+                                 HorizontalAlignment="Center" 
+                                 Style="{StaticResource CustomTextBlockStyle}"/>
+
+                        <TextBox x:Name="MaxCost" 
+                                Grid.Column="1" 
+                                Grid.Row="1" 
+                                 Margin="20,0,0,10"
+                                TextChanged="MaxCost_TextChanged" 
+                                Style="{StaticResource CustomTextBoxStyle}"/>
+                    </Grid>
+
+                    <TextBlock Text="{DynamicResource Type}" 
+                             Padding="20,20,0,0" 
+                             Style="{StaticResource HeaderTextBlockStyle}"/>
+
+                    <ComboBox x:Name="FilterType" 
+                             SelectionChanged="FilterType_SelectionChanged" 
+                             Style="{StaticResource CustomComboBoxStyle}">
+                        <ComboBoxItem Content="{DynamicResource Unlimited}"/>
+                        <ComboBoxItem Content="{DynamicResource Standard}"/>
+                    </ComboBox>
+
+                    <TextBlock Text="{DynamicResource Duration}" 
+                             Margin="20,20,0,0" 
+                             Style="{StaticResource HeaderTextBlockStyle}" />
+
+                    <ComboBox x:Name="FilterDuration" 
+                             SelectionChanged="FilterDuration_SelectionChanged" 
+                             Style="{StaticResource CustomComboBoxStyle}">
+                        <ComboBoxItem Content="{DynamicResource OneMonth}"/>
+                        <ComboBoxItem Content="{DynamicResource ThreeMonths}"/>
+                        <ComboBoxItem Content="{DynamicResource SixMonths}"/>
+                        <ComboBoxItem Content="{DynamicResource OneYear}"/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <!--#endregion-->
+    </Grid>
+</Window>

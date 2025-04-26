@@ -1,0 +1,166 @@
+<Window x:Class="WPF_FitnessClub.Windows.ControlTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_FitnessClub.Windows"
+        xmlns:controls="clr-namespace:WPF_FitnessClub.UserControls"
+        mc:Ignorable="d"
+        Title="Тестирование пользовательских элементов управления" 
+        Height="700" Width="800" 
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <!-- Заголовок -->
+            <TextBlock Grid.Row="0" Text="Калькулятор данных пользователя (Beta)" 
+                   FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <!-- Контейнер для элементов управления -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <GroupBox Header="Профиль клиента" Padding="10">
+                        <StackPanel>
+                            <controls:ClientProfileControl x:Name="profileControl" 
+                                                      Age="35" 
+                                                      Height="175" 
+                                                      Weight="75.5"
+                                                      Margin="0,0,0,15"
+                                                      ProfileDataChanged="ProfileControl_ProfileDataChanged"/>
+
+                            <Separator Margin="0,5,0,10"/>
+
+                            <!-- Слайдеры для изменения значений -->
+                            <TextBlock Text="Изменение значений:" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Возраст -->
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Возраст:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Slider Grid.Row="0" Grid.Column="1" 
+                                   Minimum="18" Maximum="120" 
+                                   Value="{Binding ElementName=profileControl, Path=Age}"
+                                   Margin="0,5"/>
+
+                                <!-- Рост -->
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Рост:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Slider Grid.Row="1" Grid.Column="1" 
+                                   Minimum="30" Maximum="300" 
+                                   Value="{Binding ElementName=profileControl, Path=Height}"
+                                   Margin="0,5"/>
+
+                                <!-- Вес -->
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Вес:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Slider Grid.Row="2" Grid.Column="1" 
+                                   Minimum="30" Maximum="150" 
+                                   Value="{Binding ElementName=profileControl, Path=Weight}"
+                                   Margin="0,5"/>
+                            </Grid>
+
+
+                            <!-- Сброс значений -->
+                            <Button Content="Сбросить к стандартным значениям" 
+                                Click="ResetProfileButton_Click"
+                                Padding="10,5"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
+                <!-- Разделитель -->
+                <Rectangle Grid.Column="1" Width="1" Fill="{DynamicResource BorderBrush}" HorizontalAlignment="Center"/>
+
+                <!-- Правая колонка: TrainingPlanControl -->
+                <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                    <GroupBox Header="План тренировки" Padding="10">
+                        <StackPanel>
+                            <controls:TrainingPlanControl x:Name="trainingControl" 
+                                                     Duration="60" 
+                                                     ExercisesCount="10" 
+                                                     Difficulty="1"
+                                                     Margin="0,0,0,15"
+                                                     TrainingPlanChanged="TrainingControl_TrainingPlanChanged"/>
+
+                            <Separator Margin="0,5,0,10"/>
+
+                            <!-- Слайдеры для изменения значений -->
+                            <TextBlock Text="Изменение значений:" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!-- Длительность -->
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Длительность:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Slider Grid.Row="0" Grid.Column="1" 
+                                   Minimum="5" Maximum="180" 
+                                   Value="{Binding ElementName=trainingControl, Path=Duration}"
+                                   Margin="0,5"/>
+
+                                <!-- Количество упражнений -->
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Упражнения:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <Slider Grid.Row="1" Grid.Column="1" 
+                                   Minimum="1" Maximum="50" 
+                                   Value="{Binding ElementName=trainingControl, Path=ExercisesCount}"
+                                   Margin="0,5"/>
+
+                                <!-- Сложность -->
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Сложность:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                <ComboBox Grid.Row="2" Grid.Column="1" 
+                                     SelectedIndex="{Binding ElementName=trainingControl, Path=Difficulty}"
+                                     Margin="0,5">
+                                    <ComboBoxItem Content="Легкий"/>
+                                    <ComboBoxItem Content="Средний"/>
+                                    <ComboBoxItem Content="Сложный"/>
+                                    <ComboBoxItem Content="Экстремальный"/>
+                                </ComboBox>
+                            </Grid>
+
+                            <!-- Предустановленные планы -->
+                            <TextBlock Text="Предустановленные планы:" FontWeight="Bold" Margin="0,10,0,5"/>
+                            <UniformGrid Columns="2" Rows="2">
+                                <Button Content="Начинающий" Margin="2" Click="BeginnerPlanButton_Click"/>
+                                <Button Content="Средний уровень" Margin="2" Click="IntermediatePlanButton_Click"/>
+                                <Button Content="Продвинутый" Margin="2" Click="AdvancedPlanButton_Click"/>
+                                <Button Content="Профессионал" Margin="2" Click="ProPlanButton_Click"/>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
+            </Grid>
+
+            <!-- Кнопка закрытия -->
+            <Button Grid.Row="2" Content="Закрыть" HorizontalAlignment="Center" 
+                Padding="10,5" Margin="0,20,0,0" Click="CloseButton_Click"/>
+        </Grid>
+    </ScrollViewer>
+</Window> 
