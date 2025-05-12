@@ -27,3 +27,5 @@ if @@TRANCOUNT > 0
 		commit tran
 	end;
 end catch
+
+select * from PULPIT_COPY

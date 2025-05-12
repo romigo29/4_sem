@@ -2,40 +2,46 @@ drop table PULPIT_COPY
 select * into PULPIT_COPY from PULPIT
 
 --TASK4
---- B --	
-
+-- B ---
+    -- Грязное чтение
 	begin transaction 
-	delete PULPIT_COPY where PULPIT = 'ОХ'
-	-------------------------- t1 --------------------
-	-------------------------- t2 --------------------
-	rollback;
+    delete from PULPIT_COPY where PULPIT = 'ОХ'; 
 
 --TASK5
 --- B --	
--------------------------- t1 ------------------
+---отсутствие грязного чтения
 	begin transaction
-	delete PULPIT_COPY where PULPIT = 'ОХ'
-
-	-------------------------- t2 --------------------
+	delete from PULPIT_COPY where PULPIT = 'ОХ'
+	-------------------------- t1 ------------------
 	rollback
+	--------------------------t2---------------
+	----неповторяюшееся чтение------
+	begin transaction 
+    update PULPIT_COPY set PULPIT = 'Изменено' where PULPIT = 'ОХ';
+	commit
+
+
 --TASK6
 --- B --	
+	------------------------t2---------------------
+	---- отсутствие неповторяющегося чтения------
 	begin transaction 
-	delete PULPIT_COPY where PULPIT = 'ОХ'
--------------------------- t1 ------------------
+    update PULPIT_COPY set PULPIT = 'Изменено' where PULPIT = 'ОХ';
 	commit
--------------------------- t2 (фантомное чтение) --------------------
+	-------------t1----------------
+	----Фантомное чтение
 	begin transaction 
-	insert PULPIT_COPY values ('ОХ', 'Органической химии', 'ТОВ')
+    insert PULPIT_COPY values ('ОХ', 'Органической химии', 'ТОВ')
 	commit
-	-----------------------
+	--------------t1-------------
 
 --TASK7
 --- B --	
+	-----отсутствие фантомного чтения
 	begin transaction 
 	insert PULPIT_COPY values ('ОХ', 'Органической химии', 'ТОВ')
 	commit
--------------------------- t1 ------------------
-	select count(*) from PULPIT_COPY where PULPIT = 'ОХ'
--------------------------- t2 --------------------
+	-------------t1----------------
+
+
 
