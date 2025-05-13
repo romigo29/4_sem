@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="images\Babbage.jpg" />
+    <Content Include="images\Berners-Lee.jpg" />
+    <Content Include="images\Chomsky.jpg" />
+    <Content Include="images\Codd.jpg" />
+    <Content Include="images\Dijkstra.jpg" />
+    <Content Include="images\Einstein.jpg" />
+    <Content Include="images\Ershov.jpg" />
+    <Content Include="images\Huntington.jpg" />
+    <Content Include="images\Knuth.jpg" />
+    <Content Include="images\Linus.jpg" />
+    <Content Include="images\Lovelace.jpg" />
+    <Content Include="images\Neumann.jpg" />
+    <Content Include="images\NewCelebrity.jpg" />
+    <Content Include="images\Tanenbaum.jpg" />
+    <Content Include="images\tmp1v0va3.tmp" />
+    <Content Include="images\tmp2ivuqk.tmp" />
+    <Content Include="images\tmpjpfdan.tmp" />
+    <Content Include="images\tmpk1rra0.tmp" />
+    <Content Include="images\tmpkqnjwm.tmp" />
+    <Content Include="images\tmpncjj1q.tmp" />
+    <Content Include="images\tmpq4kvll.tmp" />
+    <Content Include="images\tmpwvisw1.tmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Лаб 6\ASPA006\DAL_Celebrity\DAL_Celebrity.csproj" />
+    <ProjectReference Include="..\..\..\Лаб 6\ASPA006\DAL_Celebrity_MSSQL\DAL_Celebrity_MSSQL.csproj" />
+  </ItemGroup>
+
+</Project>

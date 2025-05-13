@@ -1,0 +1,32 @@
+﻿@page 
+
+@using static DAL_Celebrity_MSSQL.DAL_Celebrity_MSSQL;
+@model ASPA007_1.Pages.CelebrityModel
+@{
+    Layout = "_CelebritiesLayout";
+    int h = 200, w = 0;
+    Celebrity celebrity = (Model.Celebrity is null)
+        ? new Celebrity() { id = 0, FullName = "Celebrity Name", Nationality = "RU", ReqPhotoPath = null }
+        : Model.Celebrity;
+
+    string photopath = $"{Model.PhotosRequestPath}/{celebrity.ReqPhotoPath}";
+}
+<div>
+
+    @section subhead
+    {
+        <h2>@celebrity.FullName</h2>
+    }
+
+    <img id="@celebrity.id"
+         src="@photopath"
+         onload="onPhotoLoad(this, @h, @w)" />
+</div>
+
+<script>
+    function onPhotoLoad(e,h,w) {                            // выравниваем фото по высоте с соблюдение пропорции
+        let k = e.naturalWidth / e.naturalHeight;
+        if (h != 0 && w == 0) e.width = k * h;
+        if (h == 0 && w != 0) e.height = parms.w / k;
+    }
+</script>

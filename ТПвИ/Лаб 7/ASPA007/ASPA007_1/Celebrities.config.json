@@ -1,0 +1,7 @@
+{
+	"Celebrities": {
+		"PhotosRequestPath": "/Photos",
+		"PhotoPath": "D:\\BSTU\\4 семестр\\ТПвИ\\Лаб 7\\ASPA007\\ASPA007_1\\images",
+		"ConnectionString": "Data Source=localhost;Initial Catalog=CelebrityDB;Integrated Security=True;TrustServerCertificate=True;"
+	}
+}
