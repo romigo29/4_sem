@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@using static DAL_Celebrity_MSSQL.DAL_Celebrity_MSSQL;
+
+@model Celebrity;
+@inject ASPA008_1.Services.CelebritiesAPIExtensions.CountryCodes Countries;
+
+@{
+
+    SelectList slcoutries = new SelectList(Countries, "code", "countryLabel");
+
+    bool isEditing = Model.Id > 0;
+
+    string actionName = isEditing ? "EditCelebrity" : "Confirm";
+
+    string returnAction = isEditing ? "Human" : "Index";
+
+    string requiredAttr = isEditing ? "" : "required";
+}
+
+@using (Html.BeginForm(actionName, "Celebrities", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @if (isEditing)
+    {
+        @Html.Hidden("id", Model.Id)
+    }
+    
+    <div class="row mb-2">
+        @Html.TextBox("fullname", Model.FullName, new { @class = "col-8", placeholder = "Celebrities Name", required = "true" })
+        @Html.DropDownList("Nationality", slcoutries, Model.Nationality, new { @class = "col-4" })
+    </div>
+
+    <div class="row mb-2">
+        <input id="upload" name="upload" type="file" style="display:none;" accept="image/jpeg" onchange="onChange(this)" @requiredAttr />
+        <button class="col-12" id="butupload" type="button" style="background-color: white;" onclick="document.getElementById('upload').click()">
+            @(isEditing ? "Change Photo" : "Upload Photo")
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-6 pe-1">
+            <button type="submit" style="width: 100%; background-color: white;">OK</button>
+        </div>
+        <div class="col-6 ps-1">
+            @if (isEditing)
+            {
+                <a href="@Url.Action("Human", "Celebrities", new { id = Model.Id })" style="text-decoration: none; width: 100%;">
+                    <button type="button" style="width: 100%; background-color: white;">CANCEL</button>
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "Celebrities")" style="text-decoration: none; width: 100%;">
+                    <button type="button" style="width: 100%; background-color: white;">CANCEL</button>
+                </a>
+            }
+        </div>
+    </div>
+}

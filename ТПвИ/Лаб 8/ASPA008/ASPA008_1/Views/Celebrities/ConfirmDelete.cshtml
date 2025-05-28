@@ -1,0 +1,46 @@
+﻿@using DAL_Celebrity_MSSQL;
+@using ASPA008_1.Helpers;
+@model DAL_Celebrity_MSSQL.Celebrity;
+
+@{
+    Layout = "_CelebritiesLayout";
+}
+
+<div style="background-color: #c9a666; padding: 20px; display: flex;">
+    <div class="celebrity-box">
+        @Html.CelebrityPhoto(Model.Id, Model.FullName, $"/Photos/{Model.ReqPhotoPath}")
+    </div>
+
+    <div class="celebrity-box">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tr>
+                        <td>@Model.FullName</td>
+                        <td>@Model.Nationality</td>
+                    </tr>
+                </table>
+                
+                @using (Html.BeginForm("Delete", "Celebrities", FormMethod.Post))
+                {
+                    @Html.Hidden("id", Model.Id)
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-block" style="width: 100%; background-color: white; margin-bottom: 5px;">DELETE CONFIRMATION</button>
+                        </div>
+                    </div>
+                }
+                
+                @using (Html.BeginForm("Human", "Celebrities", FormMethod.Get))
+                {
+                    @Html.Hidden("id", Model.Id)
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-block" style="width: 100%; background-color: white;">CANCEL</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

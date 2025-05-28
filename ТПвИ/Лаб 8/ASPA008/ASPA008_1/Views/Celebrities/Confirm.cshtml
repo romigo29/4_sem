@@ -1,0 +1,51 @@
+﻿@using ASPA008_1.Helpers
+@using static DAL_Celebrity_MSSQL.DAL_Celebrity_MSSQL
+@model ASPA008_1.Controllers.CelebritiesController.HumanModel
+
+@{
+    Layout = "_CelebritiesLayout";
+    Celebrity celebrity = Model.celebrity;
+    string photopath = $"{Model.photosrequestpath}/{celebrity.ReqPhotoPath}";
+}
+
+<div style="background-color: #c9a666; padding: 20px; display: flex;">
+    <div class="celebrity-box">
+        @Html.CelebrityPhoto(celebrity.Id, celebrity.FullName, photopath)
+    </div>
+
+    <div class="celebrity-box">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tr>
+                        <td>@Model.celebrity.FullName</td>
+                        <td>@Model.celebrity.Nationality</td>
+                    </tr>
+                </table>
+                
+                @using (Html.BeginForm("SaveConfirmed", "Celebrities", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.celebrity.FullName)
+                    @Html.HiddenFor(m => m.celebrity.Nationality)
+                    @Html.HiddenFor(m => m.celebrity.ReqPhotoPath)
+                    @Html.HiddenFor(m => m.photosrequestpath)
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-block" style="width: 100%; background-color: white; margin-bottom: 5px;">OK</button>
+                        </div>
+                    </div>
+                }
+                
+                @using (Html.BeginForm("CancelConfirm", "Celebrities", FormMethod.Post))
+                {
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-block" style="width: 100%; background-color: white;">CANCEL</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

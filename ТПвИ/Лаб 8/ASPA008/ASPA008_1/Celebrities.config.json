@@ -1,0 +1,8 @@
+{
+	"Celebrities": {
+		"PhotosRequestPath": "/Photos",
+		"PhotoPath": "D:\\BSTU\\4 семестр\\ТПвИ\\Лаб 8\\ASPA008\\ASPA008_1\\Photos",
+		"ConnectionString": "Data Source=localhost;Initial Catalog=CelebrityDB;Integrated Security=True;TrustServerCertificate=True;",
+		"ISO3166alpha2Path": "D:\\BSTU\\4 семестр\\ТПвИ\\Лаб 8\\ASPA008\\ASPA008_1\\CountryCodes\\iso3166-1-alpha2-country-codes.json"
+	}
+}
