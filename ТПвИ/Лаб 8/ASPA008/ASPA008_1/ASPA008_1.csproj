@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\ANC25_WEBAPI_DLL\ANC25_WEBAPI_DLL.csproj" />
     <ProjectReference Include="..\..\..\Лаб 6\ASPA006\DAL_Celebrity_MSSQL\DAL_Celebrity_MSSQL.csproj" />
     <ProjectReference Include="..\..\..\Лаб 6\ASPA006\DAL_Celebrity_MSSQL_Test\DAL_Celebrity_MSSQL_Test.csproj" />
   </ItemGroup>

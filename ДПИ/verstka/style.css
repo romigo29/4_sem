@@ -1,0 +1,318 @@
+/* Общие стили */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #2E2E2E;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Сайдбар */
+.sidebar {
+  width: 150px;
+  height: 666px;
+  background: #0F0F0F;
+  padding: 30px 0;
+  margin: 30px 0 30px 25px;
+  border: 1px solid white;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 16px;
+}
+
+.sidebar nav ul li:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px; 
+  height: 120px;      
+  background: #7E0000;
+  color: #fff;
+  text-align: center;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.3s;
+  box-sizing: border-box;
+}
+
+.sidebar nav ul li a:hover {
+  background: #9F0000;
+}
+
+/* Основной контент */
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  background-color: #0F0F0F;
+  margin: 0 0 20px 0;
+  font-size: 2em;
+  border: 1px solid white;
+  padding: 8px 0;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  background-color: #0F0F0F;
+  padding: 16px 0;
+  border: 1px solid white;
+}
+
+.filters button {
+  background: #9F0000;
+  color: #fff;
+  padding: 10px 32px;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s;
+}
+
+.filters button:hover {
+  background: #b30000;
+}
+
+/* Расписание */
+.schedule {
+  border: 1px solid white;
+}
+
+.schedule .days {
+  display: flex;
+  justify-content: space-between;
+  gap: 1px;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+
+.day {
+  background: #111;
+  flex: 1 1 120px;
+  min-width: 125px;
+}
+
+.day-title {
+  background: #ffffff;
+  color: #101010;
+  text-align: center;
+  font-weight: bold;
+  padding: 14px 0;
+  user-select: none;
+}
+
+.card {
+  background: #fff;
+  color: #181818;
+  margin: 10px;
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card .type {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.card .trainer, .card .time, .card .places {
+  font-size: 0.95em;
+}
+
+/* Новый стиль для зала */
+.hall {
+  color: rgba(24, 24, 24, 0.5); /* темно-серый с прозрачностью 50% */
+  font-size: 0.95em;
+}
+.places {
+  color: rgba(24, 24, 24, 0.5); /* темно-серый с прозрачностью 50% */
+  font-size: 0.95em;
+}
+
+.signup {
+  background: #9F0000;
+  color: #fff;
+  border: none;
+  padding: 6px 4px;
+  width: 100%;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.signup:hover {
+  background: #b30000;
+}
+
+/* Футер */
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 18px 150px;
+  background: #101010;
+  color: #fff;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.contacts, .social, .brand {
+  margin-bottom: 8px;
+  min-width: 150px;
+}
+
+.contacts {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contactttt {
+  font-size: 16px;
+  font-weight: 600; 
+}
+
+.brand {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.social {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: transform 0.2s;
+  color: #9F0000;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Модальное окно */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #181818;
+  color: #fff;
+  padding: 30px 30px 24px 30px;
+  min-width: 400px;
+  max-width: 95vw;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.modal-content label {
+  display: block;
+  margin: 16px 0 8px 0;
+  font-size: 1.15em;
+  font-weight: 400;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.15em;
+  background: #fff;
+  color: #181818;
+  box-sizing: border-box;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.confirm {
+  background: #9F0000;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 12px 0;
+  border-radius: 6px;
+  font-size: 1.6em;
+  font-weight: 400;
+  width: 200px;
+}
+
+.confirm:hover {
+  background: #b30000;
+}
+
+.cancel {
+  background: #ccc;
+  color: #9F0000;
+  border: 2px solid #ca0000;
+  border-radius: 6px;
+  font-size: 1.6em;
+  font-weight: 400;
+  width: 200px;
+}
+
+.close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  font-size: 1.5em;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}

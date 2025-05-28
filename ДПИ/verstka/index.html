@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Расписание - Драйв</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li><a href="#">Главная</a></li>
+          <li><a href="#">Услуги и цены</a></li>
+          <li><a href="#">Расписание</a></li>
+          <li><a href="#">План тренировок и питания</a></li>
+          <li><a href="#">Калькулятор КБЖУ</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Расписание</h1>
+      </header>
+
+      <section class="schedule">
+        <div class="filters">
+          <button>Фильтр по времени</button>
+          <button>Фильтр по типу</button>
+          <button>Фильтр по тренеру</button>
+        </div>
+        <div class="days">
+          <div class="day">
+            <div class="day-title">ПН</div>
+            <div class="card">
+              <div class="type">Кардио</div>
+              <div class="trainer">Игорь Романов</div>
+              <div class="time">9:30 - 10:25</div>
+              <div class="hall">Зал А</div>
+              <div class="places">Свободно мест: 8</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+            <div class="card">
+              <div class="type">Пилатес</div>
+              <div class="trainer">Дмитрий Иванов</div>
+              <div class="time">13:00 - 14:00</div>
+              <div class="hall">Зал Б</div>
+              <div class="places">Свободно мест: 3</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-title">ВТ</div>
+            <div class="card">
+              <div class="type">Кроссфит</div>
+              <div class="trainer">Анна Смирнова</div>
+              <div class="time">11:00 - 12:00</div>
+              <div class="hall">Зал В</div>
+              <div class="places">Свободно мест: 5</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-title">СР</div>
+            <div class="card">
+              <div class="type">Йога</div>
+              <div class="trainer">Елена Кузнецова</div>
+              <div class="time">14:00 - 15:00</div>
+              <div class="hall">Зал Г</div>
+              <div class="places">Свободно мест: 10</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-title">ЧТ</div>
+            <div class="card">
+              <div class="type">Пилатес</div>
+              <div class="trainer">Дмитрий Иванов</div>
+              <div class="time">16:00 - 17:00</div>
+              <div class="hall">Зал Б</div>
+              <div class="places">Свободно мест: 7</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+            <div class="card">
+              <div class="type">Кардио</div>
+              <div class="trainer">Игорь Романов</div>
+              <div class="time">11:30 - 20:25</div>
+              <div class="hall">Зал А</div>
+              <div class="places">Свободно мест: 5</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-title">ПТ</div>
+            <div class="card">
+              <div class="type">Кроссфит</div>
+              <div class="trainer">Мария Петрова</div>
+              <div class="time">18:00 - 19:00</div>
+              <div class="hall">Зал В</div>
+              <div class="places">Свободно мест: 6</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-title">СБ</div>
+            <div class="card">
+              <div class="type">Танцы</div>
+              <div class="trainer">Сергей Лебедев</div>
+              <div class="time">10:00 - 11:00</div>
+              <div class="hall">Зал Д</div>
+              <div class="places">Свободно мест: 12</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+            <div class="card">
+              <div class="type">Йога</div>
+              <div class="trainer">Елена Кузнецова</div>
+              <div class="time">13:00 - 14:00</div>
+              <div class="hall">Зал Г</div>
+              <div class="places">Свободно мест: 4</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+            <div class="card">
+              <div class="type">Кроссфит</div>
+              <div class="trainer">Мария Петрова</div>
+              <div class="time">18:00 - 19:00</div>
+              <div class="hall">Зал В</div>
+              <div class="places">Свободно мест: 9</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-title">ВС</div>
+            <div class="card">
+              <div class="type">Растяжка</div>
+              <div class="trainer">Ольга Васильева</div>
+              <div class="time">12:00 - 13:00</div>
+              <div class="hall">Зал Е</div>
+              <div class="places">Свободно мест: 9</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+            <div class="card">
+              <div class="type">Кардио</div>
+              <div class="trainer">Игорь Романов</div>
+              <div class="time">15:30 - 16:25</div>
+              <div class="hall">Зал А</div>
+              <div class="places">Свободно мест: 8</div>
+              <button class="signup" onclick="openModal()">Записаться</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="contacts">
+      <div class="contactttt">КОНТАКТЫ:</div>
+      <div>MTC:  +375 29 123 45 67</div>
+      <div>A1:   +375 44 765 43 21</div>
+      <div>Life: +375 33 987 65 43</div>
+    </div>
+    <div class="social">
+      <a>
+        <img src="img/soc_youtube.png" class="social-icon" />
+      </a>
+      <a>
+        <img src="img/soc_inst.png" class="social-icon" />
+      </a>
+      <a>
+        <img src="img/soc_teleg.png" class="social-icon" />
+      </a>
+    </div>
+    <div class="brand">Драйв</div>
+  </footer>
+
+  <!-- Модальное окно -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Запись на тренировку</h2>
+      <form id="signupForm">
+        <label for="phone">Номер для телефона для связи</label>
+        <input type="text" id="phone" name="phone" required />
+
+        <label for="fullname">Фамилия, Имя</label>
+        <input type="text" id="fullname" name="fullname" required />
+
+        <div class="modal-buttons">
+          <button type="submit" class="confirm">Подтвердить</button>
+          <button type="button" class="cancel" onclick="closeModal()">Отмена</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

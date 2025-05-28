@@ -1,8 +1,8 @@
 using DAL_Celebrity_MSSQL;
-using static ASPA008_1.Services.CelebritiesAPIExtensions;
-using static ASPA008_1.Services.CelebrityAPI;
-using static ASPA008_1.Services.MiddlewareErrorHandler;
-using ASPA008_1.Services;
+using static ANC25_WEBAPI_DLL.Services.CelebritiesAPIExtensions;
+using static ANC25_WEBAPI_DLL.Services.CelebrityAPI;
+using static ANC25_WEBAPI_DLL.Services.MiddlewareErrorHandler;
+using ANC25_WEBAPI_DLL.Services;
 using Microsoft.AspNetCore.Builder;
 
 internal class Program
