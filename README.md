@@ -1,7 +1,7 @@
 # 4_sem
 
 # БД 
-Базы данных - SQL, MySql Server
+Базы данных - SQL, Microsoft Sql Server
 
 # ООП
 Объектно-ориентированное программирование - WinWorms, WPF
